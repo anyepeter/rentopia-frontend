@@ -1,5 +1,3 @@
-import { navLink } from "../../data/navData";
-import { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { DropIcon, EmailIcon, FirstNav, LoginLink, NavContainer, NavLink, PhoneIcon, SecondNav } from "../Styles/navbar/Navbar.styled";
@@ -8,12 +6,6 @@ import  logo  from "../../assets/logo.png"
 
 const Navbar = () => {
 
-    const [menu, setMenu] = useState(false)
-    console.log(menu)
-
-    const handleToggle = () => {
-        setMenu(!menu)
-    } 
     return(
        <ThemeProvider theme={theme}>
         <NavContainer>
