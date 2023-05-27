@@ -9,10 +9,6 @@ export const navLink = [
         name: "Property owners", 
         path: "owner"
     },
-    {
-        id: 3,
-        name: "Categories",
-        path: "#about"
-    }
+   
 ]
 
