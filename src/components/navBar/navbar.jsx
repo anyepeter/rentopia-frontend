@@ -1,10 +1,25 @@
 import { ThemeProvider } from "styled-components";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { DropIcon, EmailIcon, FirstNav, LoginLink, NavContainer, NavLink, PhoneIcon, SecondNav } from "../Styles/navbar/Navbar.styled";
+import { DropIcon,
+    EmailIcon,
+    FirstNav,
+    LoginLink, 
+    NavContainer, 
+    NavLink, 
+    PhoneIcon, 
+    SecondNav
+ } from "../Styles/navbar/Navbar.styled";
 import { theme } from "../Styles/Global.styled";
-import  logo  from "../../assets/logo.png"
+import  logo  from "../../assets/logo.png";
+import { useState } from "react";
 
 const Navbar = () => {
+
+    const [count, setCount] = useState(false)
+
+    const handleOpen = () => {
+        setOpen(!open);
+      };
 
     return(
        <ThemeProvider theme={theme}>
@@ -24,6 +39,8 @@ const Navbar = () => {
                         <span>Help and Support </span>
                         <DropIcon />
                     </li>
+                    <button onClick={handleOpen}>Dropdown</button>
+      {open ? <div>Is Open</div> : <div>Is Closed</div>}
                 </ul>
                 <ul>
                    <li>
