@@ -8,18 +8,30 @@ import { DropIcon,
     NavLink, 
     PhoneIcon, 
     SecondNav
- } from "../Styles/navbar/Navbar.styled";
-import { theme } from "../Styles/Global.styled";
+ } from "../../Styles/navbar/Navbar.styled";
+import { theme } from "../../Styles/Global.styled";
 import  logo  from "../../assets/logo.png";
 import { useState } from "react";
+import SelectOption from "./selectOption";
+
 
 const Navbar = () => {
 
-    const [count, setCount] = useState(false)
+    const [option, setOption] = useState({
+        langueage: 'EN'
+    })
+console.log(option.langueage)
+   const handleOptions = (e) =>{
 
-    const handleOpen = () => {
-        setOpen(!open);
-      };
+    const { name, type, value, checked } = e.target 
+    setOption(prevOption => {
+        return {
+            prevOption,
+            [name]: type === "checkbox" ? checked : value
+        }
+    }) 
+
+   }
 
     return(
        <ThemeProvider theme={theme}>
@@ -39,21 +51,21 @@ const Navbar = () => {
                         <span>Help and Support </span>
                         <DropIcon />
                     </li>
-                    <button onClick={handleOpen}>Dropdown</button>
-      {open ? <div>Is Open</div> : <div>Is Closed</div>}
                 </ul>
                 <ul>
                    <li>
-                   <select>
-                         <option>USD</option>
-                         <option>CFA</option>
-                    </select>
+                  <SelectOption name={"currency"} value={"CFA"} 
+                  options={[
+                    { label: "CFA", value: "CFA" },
+                    { label: "USD", value: "USD" },
+                  ]} />
                    </li>
                    <li>
-                   <select>
-                         <option>EN</option>
-                         <option>FN</option>
-                    </select>
+                   <SelectOption name={"language"} value={"EN"} 
+                  options={[
+                    { label: "EN", value: "EN" },
+                    { label: "FN", value: "FN" },
+                  ]} />
                    </li>
                 </ul>
                 </div>
