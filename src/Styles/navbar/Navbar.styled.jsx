@@ -13,7 +13,6 @@ display: flex;
 flex-direction: column;
 align-items: center;
 background-color: #fff;
-gap: 0.8rem;
 `
 export const FirstNav = Styled.div`
 width: 100%;
