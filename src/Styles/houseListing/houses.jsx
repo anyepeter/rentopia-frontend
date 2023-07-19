@@ -7,10 +7,9 @@ export const HouseStyle = styled.div`
 display: flex;
 flex-direction: column;
 gap: 0.2rem;
-
-box-shadow: 6px 9px 15px -7px rgba(13,237,22,0.69);
--webkit-box-shadow: 6px 9px 15px -7px rgba(13,237,22,0.69);
--moz-box-shadow: 6px 9px 15px -7px rgba(13,237,22,0.69);
+box-shadow: 4px 5px 11px -3px rgba(245,245,245,1));
+-webkit-box-shadow: 4px 5px 11px -3px rgba(245,245,245,1);
+-moz-box-shadow: 4px 5px 11px -3px rgba(245,245,245,1);
 `
 export const ImageContainer = styled.div`
 width: 100%;
