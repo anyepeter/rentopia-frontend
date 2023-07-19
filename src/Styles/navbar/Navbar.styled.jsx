@@ -1,6 +1,6 @@
 import  Styled, { styled }  from "styled-components";
-import { HiPhone } from "react-icons/hi";
-import { MdEmail } from "react-icons/md";
+import { HiPhone } from "react-icons/Hi";
+import { MdEmail } from "react-icons/Md";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
 export const NavContainer = Styled.header`
