@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { HousesListingSection } from '../../Styles/houseListing/houseContainer';
 import { HouseStyle,
     ImageContainer, 
@@ -9,9 +9,23 @@ import { HouseStyle,
     BsPerson, HouseOwner, Calender} from '../../Styles/houseListing/houses';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../Styles/Global.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchHouses } from '../../Redux/houses/houseSlice';
+
 
 
 const Houses = () => {
+   
+    const houses = useSelector((state) => state.houses.houses.data)
+    const dispatch = useDispatch()
+    
+
+    useEffect(() => {
+        dispatch(fetchHouses())
+    }, [dispatch])
+
+    console.log(houses)
+
     return <ThemeProvider theme={theme}>
     <HousesListingSection>
 
