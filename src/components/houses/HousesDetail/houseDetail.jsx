@@ -6,13 +6,20 @@ import { IoIosArrowForward } from 'react-icons/Io';
 import { BsGeoAlt } from '../../../Styles/houseListing/houses';
 import { AiOutlineStar } from 'react-icons/Ai';
 import { HouseFeature } from '../../../Styles/houseListing/houses';
+import { useLocation } from 'react-router';
+
 const HouseDetail = () => {
+   const location = useLocation()
+   
+   const { house, user } = location.state
+
+
     return <ThemeProvider theme={theme}>
 
     <DetailContainer>
         <IntroSection>
         <div>
-            <h1>Property Single</h1>
+            <h1></h1>
             <ul>
                 <li>Home</li>
                 <li><IoIosArrowForward /></li>
@@ -26,14 +33,14 @@ const HouseDetail = () => {
             <ImageContainer>
                 <div>
                    <ul>
-                    <li>Appartment</li>
-                    <li>Name of House</li>
-                    <li><BsGeoAlt /> location</li>
+                    <li>{house.relationships.category.data.name}</li>
+                    <li>{user.attributes.name}</li>
+                    <li><BsGeoAlt /> {house.relationships.location.data.city}, {house.relationships.location.data.quater}</li>
                    </ul>
 
                    <ul>
                    <li><AiOutlineStar /></li>
-                    <li><p>$2000</p></li>
+                    <li><p>$ {house.attributes.price}</p></li>
                     <li><p>Fixed Amount</p></li>
                    </ul>
                 </div>

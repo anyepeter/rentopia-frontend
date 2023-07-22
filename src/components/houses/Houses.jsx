@@ -5,19 +5,25 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../../Styles/Global.styled';
 import dateFormat from 'dateformat';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 const Houses = ({ houses }) => {
      
     const { data, included } = houses;
-    console.log(included);
-    console.log(data);
+    const navigate = useNavigate()
 
+  
     return (
         <ThemeProvider theme={theme}>
             <HousesListingSection>
-       
                    {
-                    data?.map((house) => (
-                        <HouseStyle >
+                    data?.filter((house) => house.id).map((house) =>  {
+
+                        const user = included?.find(
+                            (user) => user.id === house.relationships.user.data.id
+                        );
+
+                        return(
+                        <HouseStyle key={house.id} onClick={() => navigate(`/houses/${house.id}`, { state: { house, user } })} >
                         <ImageContainer>
                             <img src='https://template.unicoderbd.com/homex/assets/images/thumbnail/02.jpg' alt="House Thumbnail" />
                             <h3>{house.relationships.category.data.name}</h3>
@@ -59,15 +65,8 @@ const Houses = ({ houses }) => {
                         <HouseOwner>
                             <li>
                                 <BsPerson />
-                                {
-                                    included.map((user) => {
-                                        if(user.id === house.relationships.user.data.id){
-                                            return(
-                                                <p>{user.attributes.name}</p>
-                                            )
-                                        }
-                                    })
-                                }
+                                
+                              <p>{user.attributes.name}</p>
                                
                             </li>
 
@@ -78,9 +77,9 @@ const Houses = ({ houses }) => {
                         </HouseOwner>
                     </HouseStyle>
        
-                    ))
+                           )})
                    }
-
+               
             </HousesListingSection>
         </ThemeProvider>
     );

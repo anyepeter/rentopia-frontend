@@ -1,7 +1,6 @@
 import SearchForm from "../components/filterForm/searchForm"
 import GooglesMap from "../components/googleMap/googleMap"
 import HousesListing from "../components/houses/housesListing"
-import Navbar from "../components/navBar/navbar"
 
 const HomePage = () => {
     return(
@@ -10,6 +9,7 @@ const HomePage = () => {
         <GooglesMap />
         <SearchForm />
         <HousesListing />
+
         </>
     )
 }

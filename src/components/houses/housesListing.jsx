@@ -1,18 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { HorizonLine, HorizonLineTwo, HouseContainer, HouseIntro, HouseSection } from '../../Styles/houseListing/houseContainer';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../Styles/Global.styled';
 import Houses from './Houses';
-import { useDispatch, useSelector } from 'react-redux';
-import houseSlice, { fetchHouses } from '../../Redux/houses/houseSlice';
+import { useSelector } from 'react-redux';
+
 
 const HousesListing = () => {
     const houses = useSelector((state) => state.houses.houses)
-    const dispatch = useDispatch()
-    console.log(houses)
-    useEffect(() => {
-        dispatch(fetchHouses())
-    }, [])
+
 
     return (
         <ThemeProvider theme={theme}>
