@@ -17,7 +17,6 @@ const initialState = {
   isLoading: false,
   success: false,
   error: '',
-  house: null,
   response: null,
 };
 
