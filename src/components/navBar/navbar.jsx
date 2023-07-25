@@ -13,6 +13,7 @@ import { theme } from "../../Styles/Global.styled";
 import  logo  from "../../assets/logo.png";
 import { useState } from "react";
 import SelectOption from "./selectOption";
+import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
@@ -21,17 +22,17 @@ const Navbar = () => {
         langueage: 'EN'
     })
 console.log(option.langueage)
-   const handleOptions = (e) =>{
+//    const handleOptions = (e) =>{
 
-    const { name, type, value, checked } = e.target 
-    setOption(prevOption => {
-        return {
-            prevOption,
-            [name]: type === "checkbox" ? checked : value
-        }
-    }) 
+//     const { name, type, value, checked } = e.target 
+//     setOption(prevOption => {
+//         return {
+//             prevOption,
+//             [name]: type === "checkbox" ? checked : value
+//         }
+//     }) 
 
-   }
+//    }
 
     return(
        <ThemeProvider theme={theme}>
@@ -99,7 +100,7 @@ console.log(option.langueage)
                     
                 </li>
                 <li>
-                    <button>Submit property</button>
+                   <button> <Link to="add_house">Submit property</Link></button>
                 </li>
               </LoginLink>
               </div>
