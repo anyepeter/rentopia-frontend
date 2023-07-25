@@ -1,0 +1,146 @@
+
+.fromSection{
+display: flex;
+width: 100%;
+justify-content: center;
+flex-direction: column;
+background-color: #F5F5F5;
+}
+
+.formCOntainer{
+    width: 100%;
+    max-width: 1300px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+}
+
+.formClass{
+    display: flex;
+    padding: 3rem;
+    background-color: #fff;
+    flex-direction: column;
+    gap: 2rem;
+
+}
+
+.formClass h2{
+    padding-bottom: .2rem;
+}
+
+.formClass hr{
+    width: 100%;
+    height: 1px;
+    border: none;
+    background-color: #F5F5F5;
+}
+
+.titleSection{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+}
+
+.titleSection input{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #F5F5F5;
+    border-radius: 5px;
+}
+
+.NumberType{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.carPark{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carPark input{
+    width: 50%;
+    height: 40px;
+    border: 1px solid #F5F5F5;
+    border-radius: 5px;
+}
+
+.textAreaField{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+}
+
+.textAreaField textarea{
+    width: 100%;
+    height: 300px;
+    background-color: #F5F5F5;
+    border: none;
+}
+
+.locationSection{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.locationHead {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.mapSection{
+    margin-top: 1rem;
+    width: 50%;
+ align-self: center;
+ overflow: hidden;
+}
+
+.file-input {
+    position: relative;
+  }
+  
+  .file-input-box {
+    width: 200px;
+    height: 200px;
+    border: 2px dashed #ccc;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .file-preview {
+    position: relative;
+    margin: 5px;
+  }
+  
+  .file-preview img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+  }
+  
+  .remove-button {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+  }
