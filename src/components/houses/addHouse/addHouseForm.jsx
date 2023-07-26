@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm, useFieldArray, Controller  } from 'react-hook-form';
-import { addHouse } from '../../Redux/houses/houseSlice';
-import LocationN from './formSearch'
+import { addHouse } from '../../../Redux/houses/houseSlice';
+import LocationN from '../formSearch'
 // import AddressToLatLng from './formsd';
-import '../../Styles/houseListing/houseForm.css'
+import '../../../Styles/houseListing/houseForm.css'
 
 
 const AddHouse = () => {
@@ -96,6 +96,67 @@ return value;
 
 
 
+      <div className='NumberType'>
+
+       <div className='titleSection'>
+       <p> 
+        Price
+        </p>
+       <input type="number" {...register('user_id')} />
+      </div>
+
+      <div className='titleSection'>
+  <p>
+    Bedroom
+  </p>
+<input type="number" {...register('category_id')} />
+      </div>
+
+      <div className='titleSection'>
+       <p>
+         Bathroom
+       </p>
+       <input type="number" {...register('category_id')} />
+      </div>
+
+      </div>
+
+      <div className='NumberType'>
+
+       <div className='titleSection'>
+       <p> 
+        Ketchen
+        </p>
+       <input type="number" {...register('user_id')} />
+      </div>
+
+      <div className='titleSection'>
+  <p>
+    water source
+  </p>
+<input type="number" {...register('category_id')} />
+      </div>
+
+      <div className='titleSection'>
+       <p>
+         Electricity type
+       </p>
+       <input type="number" {...register('category_id')} />
+      </div>
+
+      </div>
+
+
+      <div className='security'>
+        <p>
+         Present of a garage?
+        </p>
+        <p>
+      <input type="checkbox" {...register('category_id')} />
+       </p>
+      </div>
+   
+
       <div className='textAreaField'>
 
       <h2>Property Description</h2>
@@ -109,7 +170,8 @@ return value;
 
      </div>
 
-
+ {//  property location
+ }
      <section className='locationSection'>
       <div className='locationHead'>
         <h2> property Location </h2>
@@ -140,6 +202,48 @@ return value;
     </div>
     </section>
 
+{//  property Security
+ }
+    <section className='securtySection'>
+      <div className='locationHead'>
+        <h2> property Security </h2>
+        <hr />
+      </div>
+
+
+
+      <div className='security'>
+        <p> 
+         The present of a Gate in the property
+        </p>
+        <p>
+        <input type="checkbox" {...register('user_id')} />
+        </p>
+      
+      </div>
+     
+      <div className='security'>
+        <p>
+         Security man
+        </p>
+        <p>
+      <input type="checkbox" {...register('category_id')} />
+       </p>
+      </div>
+   
+      <div className='textAreaFieldSection'>
+
+       <p>
+        Security Description
+       </p>
+
+      <textarea type='textarea' {...register('location_attributes.city')} />
+
+     </div>
+    </section>
+
+ {//  property Images and video
+ }
 
     <section className='titleSection'>
       <h2>Add Photos and Videos</h2>
@@ -158,19 +262,24 @@ return value;
     </section>
 
 
+
+<div className='nearbySection' >
+ <h2>Add Nearby Places</h2>
+
+ <hr />
       {fields.length === 0 && (
-        <div key={0}>
-          <div>
+<div className='nearbyPlace' key={0}>
+          <div className='titleSection'>
             <p>Place Name</p>
           <input {...register(`near_by_places_attributes[0].name`)} />
           </div>
 
-          <div>
-            <p>Distance from the property</p>
+          <div className='titleSection'>
+            <p>Distances</p>
           <input type='number' {...register(`near_by_places_attributes[0].distance`)} />
           </div>
 
-          <div>
+          <div className='titleSection'>
             <p>Place Category</p>
          <input {...register(`near_by_places_attributes[0].place_id`)} />
          </div>
@@ -178,19 +287,36 @@ return value;
       )}
 
 {fields.slice(1).map((item, index) => (
-        <div key={item.id}>
+        <div className='nearbyPlace' key={item.id}>
+            <div className='titleSection'>
+            <p>Place Name</p>
           <input {...register(`near_by_places_attributes[${index + 1}].name`)} />
+          </div>
+
+          <div className='titleSection'>
+            <p>Distances</p>
           <input type='number' {...register(`near_by_places_attributes[${index + 1}].distance`)} />
-          <input type='number' {...register(`near_by_places_attributes[${index + 1}].place_id`)} />
-          <button type="button" onClick={() => remove(index + 1)}>Remove</button>
+          </div>
+
+          <div className='titleSection'>
+            <p>Place Category</p>
+         <input {...register(`near_by_places_attributes[${index + 1}].place_id`)} />
+         </div>
+         <button className='remove' type="button" onClick={() => remove(index)}>
+            Remove
+          </button>
         </div>
       ))}
 
-      <button type="button" onClick={() => append({})}>
+      <button className='add' type="button" onClick={() => append({})}>
         Add Place
       </button>
 
+     </div>
 
+     <div className='buttonSection'>
+      <input type='Submit' />
+     </div>
     </form>
     </div>
     </section>

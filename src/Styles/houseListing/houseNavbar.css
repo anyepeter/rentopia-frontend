@@ -1,0 +1,46 @@
+.houseNavbarContainer{
+    width: 100%;
+    height: 55px;
+    display: flex;
+   align-items: center;
+    background-color: rgb(1, 1, 53);
+}
+
+.houseNavbarSection{
+    width: 100%;
+    max-width: 1300px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+
+}
+
+.NavbarItems{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    color: #fff;
+    list-style: none;
+}
+
+.NavbarItems li {
+    display: flex;
+}
+
+.houseLogo{
+    width: 40px;
+}
+
+.userAvater{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.linkHouse{
+    display: flex;
+    gap: .3rem;
+    align-items: center;
+    justify-content: center;
+}
