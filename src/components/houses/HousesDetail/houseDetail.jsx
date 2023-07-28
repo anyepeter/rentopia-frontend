@@ -2,9 +2,9 @@ import React from 'react';
 import { DetailContainer, ImageContainer, IntroSection, Picture } from '../../../Styles/houseListing/HouseDetails/houseDetailStyle';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../../Styles/Global.styled';
-import { IoIosArrowForward } from 'react-icons/Io';
+import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import { BsGeoAlt } from '../../../Styles/houseListing/houses';
-import { AiOutlineStar } from 'react-icons/Ai';
+import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import { HouseFeature } from '../../../Styles/houseListing/houses';
 import { useLocation } from 'react-router';
 
@@ -22,9 +22,9 @@ const HouseDetail = () => {
             <h1></h1>
             <ul>
                 <li>Home</li>
-                <li><IoIosArrowForward /></li>
+                <li><KeyboardArrowRightOutlinedIcon /></li>
                 <li>Property</li>
-                <li><IoIosArrowForward /></li>
+                <li><KeyboardArrowRightOutlinedIcon /></li>
                 <li>Property Single</li>
             </ul>
         </div>
@@ -39,7 +39,7 @@ const HouseDetail = () => {
                    </ul>
 
                    <ul>
-                   <li><AiOutlineStar /></li>
+                   <li><StarBorderOutlinedIcon /></li>
                     <li><p>$ {house.attributes.price}</p></li>
                     <li><p>Fixed Amount</p></li>
                    </ul>

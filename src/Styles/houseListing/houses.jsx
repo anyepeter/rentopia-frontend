@@ -1,7 +1,8 @@
 import  Styled, { styled }  from "styled-components";
-import { AiOutlineStar } from 'react-icons/Ai'
-import { BsFillGeoAltFill, BsPersonFill } from 'react-icons/Bs';
-import { SlCalender } from "react-icons/Sl";
+import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 
 export const HouseStyle = styled.div`
 display: flex;
@@ -95,7 +96,7 @@ li{
 `
 
 
-export const StarReview = Styled(AiOutlineStar)`
+export const StarReview = Styled(StarBorderOutlinedIcon)`
 position: absolute;
 top: 82%;
 right: 2%;
@@ -104,11 +105,11 @@ color: #fff;
 
 `
 
-export const BsGeoAlt = Styled(BsFillGeoAltFill)`
+export const BsGeoAlt = Styled(LocationOnOutlinedIcon)`
 color: #46c788;
 `
 
-export const BsPerson = Styled(BsPersonFill)`
+export const BsPerson = Styled(Person2OutlinedIcon)`
 color: #46c788;
 `
 
@@ -128,6 +129,6 @@ li{
 }
 `
 
-export const Calender = Styled(SlCalender)`
+export const Calender = Styled(CalendarMonthOutlinedIcon)`
 color: #46c788;
 `

@@ -60,6 +60,38 @@ return value;
 
   console.log(clickedLocation)
 
+
+
+
+//Handle image input files preview 
+
+  const [selectedImages, setSelectedImages] = useState([]);
+
+  const handleImageChange = (e) => {
+    const files = e.target.files;
+    const newImages = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        newImages.push(reader.result);
+        if (newImages.length === files.length) {
+          setSelectedImages((prev) => prev.concat(newImages));
+        }
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemoveImage = (index) => {
+    const updatedImages = [...selectedImages];
+    updatedImages.splice(index, 1);
+    setSelectedImages(updatedImages);
+  };
+
   return (
     <section className='fromSection'>
 
@@ -245,14 +277,30 @@ return value;
  {//  property Images and video
  }
 
-    <section className='titleSection'>
+    <section className='photos-video' >
       <h2>Add Photos and Videos</h2>
       <hr />
 
-     <div>
-      <p>Images</p>
-      <input type='file' {...register('images[]')} multiple />
-     </div>
+      <div>
+      <div className="container">
+        <input
+          className="custom-file-input"
+          type="file"
+          onChange={handleImageChange}
+          multiple
+
+        />
+      </div>
+
+      <div className="preview-container">
+        {selectedImages.map((image, index) => (
+          <div key={index} className="image-preview">
+            <img src={image} className='imageFile' alt={`Preview ${index + 1}`} />
+            <button onClick={() => handleRemoveImage(index)}>Remove</button>
+          </div>
+        ))}
+      </div>
+    </div>
 
      <div>
       <p>Vidoe</p>

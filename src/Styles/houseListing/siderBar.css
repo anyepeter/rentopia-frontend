@@ -1,0 +1,58 @@
+.siderBarContaner{
+    height: 100vh;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1rem;
+    background-color: rgb(40, 38, 38);
+    
+}
+
+.siderSection{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.siderSection hr {
+    height: 2px;
+    width: 100%;
+    border: none;
+    background-color: aliceblue;
+}
+
+.siderItems{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.siderItems li {
+display: flex;
+gap: .5rem;
+color: antiquewhite;
+align-items: center;
+justify-content: flex-start;
+}
+
+/* Addhouse bashboard css */
+
+.homeBashboard{
+    display: flex;
+    background-color: black;
+}
+
+@media screen and (width <= 900px) {
+    .homeBashboard{
+        display: flex;
+        background-color: rgb(129, 57, 57);
+    }
+
+    .remove-name{
+        display: none;
+    }
+}
