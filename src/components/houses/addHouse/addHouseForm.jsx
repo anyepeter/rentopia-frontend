@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useForm, useFieldArray, Controller  } from 'react-hook-form';
 import { addHouse } from '../../../Redux/houses/houseSlice';
 import LocationN from '../formSearch'
-// import AddressToLatLng from './formsd';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import '../../../Styles/houseListing/houseForm.css'
 
 
@@ -50,8 +51,8 @@ return value;
   };
 
   const address = {
-    latitude: 4.714528,
-    longitude: 13.034560,
+    latitude: 3.714528,
+    longitude: 11.034560,
   };
 
   const handleMapClick = (lat, lng) => {
@@ -66,7 +67,7 @@ return value;
 //Handle image input files preview 
 
   const [selectedImages, setSelectedImages] = useState([]);
-
+console.log(selectedImages)
   const handleImageChange = (e) => {
     const files = e.target.files;
     const newImages = [];
@@ -97,7 +98,7 @@ return value;
 
       <div className='formCOntainer'>
 
-        <h1>Submit Property</h1>
+        <h1 className='form-header'>Submit Property</h1>
 
     <form className='formClass' onSubmit={handleSubmit(onSubmit)}>
         <h2>Basic Information</h2>
@@ -114,7 +115,12 @@ return value;
         <p> 
           Property Type
         </p>
-      <input type="number" {...register('user_id')} />
+        <select {...register("category")}>
+        <option value="1">--Choose--</option>
+        <option value="1">Studio</option>
+        <option value="2">Single Room</option>
+        <option value="3">Appartment</option>
+      </select>
       </div>
      
       <div className='titleSection'>
@@ -166,14 +172,23 @@ return value;
   <p>
     water source
   </p>
-<input type="number" {...register('category_id')} />
+  <select {...register("category")}>
+        <option value="1">--Choose--</option>
+        <option value="1">Studio</option>
+        <option value="2">Single Room</option>
+        <option value="3">Appartment</option>
+      </select>
       </div>
 
       <div className='titleSection'>
        <p>
          Electricity type
        </p>
-       <input type="number" {...register('category_id')} />
+       <select {...register("category")}>
+        <option value="1">--Choose--</option>
+        <option value="1">Studio</option>
+        <option value="2">Single Room</option>
+      </select>
       </div>
 
       </div>
@@ -184,7 +199,7 @@ return value;
          Present of a garage?
         </p>
         <p>
-      <input type="checkbox" {...register('category_id')} />
+      <input type="checkbox" {...register('garage')} />
        </p>
       </div>
    
@@ -198,7 +213,7 @@ return value;
          Description
        </p>
 
-      <textarea type='textarea' {...register('location_attributes.city')} />
+      <textarea type='textarea' {...register('location_attributes.city')} placeholder='Write details' />
 
      </div>
 
@@ -206,7 +221,7 @@ return value;
  }
      <section className='locationSection'>
       <div className='locationHead'>
-        <h2> property Location </h2>
+        <h2> Property Location </h2>
 
         <hr />
       </div>
@@ -230,7 +245,7 @@ return value;
     </div>
 
     <div className='mapSection'>
-      <LocationN />
+      <LocationN  address={address} onMapClick={handleMapClick} />
     </div>
     </section>
 
@@ -238,7 +253,7 @@ return value;
  }
     <section className='securtySection'>
       <div className='locationHead'>
-        <h2> property Security </h2>
+        <h2> Property Security </h2>
         <hr />
       </div>
 
@@ -269,7 +284,7 @@ return value;
         Security Description
        </p>
 
-      <textarea type='textarea' {...register('location_attributes.city')} />
+      <textarea type='textarea' {...register('location_attributes.city')} placeholder='Write details' />
 
      </div>
     </section>
@@ -288,7 +303,7 @@ return value;
           type="file"
           onChange={handleImageChange}
           multiple
-
+          
         />
       </div>
 
@@ -296,7 +311,9 @@ return value;
         {selectedImages.map((image, index) => (
           <div key={index} className="image-preview">
             <img src={image} className='imageFile' alt={`Preview ${index + 1}`} />
-            <button onClick={() => handleRemoveImage(index)}>Remove</button>
+            <button className='preview-remove' onClick={() => handleRemoveImage(index)}>
+            <CloseOutlinedIcon style={{ fontSize: '15' }}/>
+            </button>
           </div>
         ))}
       </div>
@@ -351,13 +368,13 @@ return value;
          <input {...register(`near_by_places_attributes[${index + 1}].place_id`)} />
          </div>
          <button className='remove' type="button" onClick={() => remove(index)}>
-            Remove
+            <CloseOutlinedIcon />
           </button>
         </div>
       ))}
 
       <button className='add' type="button" onClick={() => append({})}>
-        Add Place
+        <AddOutlinedIcon />
       </button>
 
      </div>

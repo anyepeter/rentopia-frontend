@@ -1,5 +1,5 @@
 import { ThemeProvider } from "styled-components";
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import { RiArrowDropDownLine } from "react-icons/ri";
 import { DropIcon,
     EmailIcon,
     FirstNav,
@@ -85,7 +85,7 @@ console.log(option.langueage)
                 </li>
                 <li>
                     <span>Categories</span>
-                     <KeyboardArrowDownOutlinedIcon style={{fontSize: "30px",
+                     <RiArrowDropDownLine style={{fontSize: "30px",
                     color: "black"}}/>
                 </li>
               </NavLink>

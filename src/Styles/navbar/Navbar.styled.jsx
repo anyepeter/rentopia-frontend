@@ -1,7 +1,7 @@
 import  Styled, { styled }  from "styled-components";
-import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
-import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import { HiPhone } from "react-icons/hi";
+import { MdEmail } from "react-icons/md";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 export const NavContainer = Styled.header`
 
@@ -102,14 +102,14 @@ export const LoginLink = styled.ul`
     }
 `
 
-export const PhoneIcon = Styled(PhoneOutlinedIcon)`
+export const PhoneIcon = Styled(HiPhone)`
 color: ${( {theme }) => theme.colors.primary};
 `
 
-export const EmailIcon = Styled(MailOutlineOutlinedIcon)`
+export const EmailIcon = Styled(MdEmail)`
 color: ${( {theme }) => theme.colors.primary};
 `
-export const DropIcon = Styled(KeyboardArrowDownOutlinedIcon)`
+export const DropIcon = Styled(RiArrowDropDownLine)`
 color: ${( {theme }) => theme.colors.primary};
 font-size: 2rem;
 `

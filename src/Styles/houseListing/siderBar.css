@@ -43,7 +43,7 @@ justify-content: flex-start;
 
 .homeBashboard{
     display: flex;
-    background-color: black;
+    background-color: var(--blue);
 }
 
 @media screen and (width <= 900px) {
