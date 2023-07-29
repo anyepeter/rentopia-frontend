@@ -134,7 +134,7 @@ console.log(selectedImages)
 
 
 
-      <div className='NumberType'>
+      <div className='NumberType text-type'>
 
        <div className='titleSection'>
        <p> 
@@ -159,7 +159,7 @@ console.log(selectedImages)
 
       </div>
 
-      <div className='NumberType'>
+      <div className='NumberType text-type'>
 
        <div className='titleSection'>
        <p> 
@@ -198,9 +198,15 @@ console.log(selectedImages)
         <p>
          Present of a garage?
         </p>
-        <p>
-      <input type="checkbox" {...register('garage')} />
-       </p>
+        <div className="flipswitch">
+      <input type="checkbox" name="flipswitch" className="flipswitch-cb" {...register('catory_id')} id='fs' checked/>
+       
+      <label class="flipswitch-label" htmlFor="fs">
+        <div class="flipswitch-inner"></div>
+        <div class="flipswitch-switch"></div>
+    </label>
+
+       </div>
       </div>
    
 
@@ -263,9 +269,15 @@ console.log(selectedImages)
         <p> 
          The present of a Gate in the property
         </p>
-        <p>
-        <input type="checkbox" {...register('user_id')} />
-        </p>
+        <div className="flipswitch">
+      <input type="checkbox" name="flipswitch" className="flipswitch-cb" {...register('category_id')} id='fs' />
+       
+      <label class="flipswitch-label" htmlFor="fs">
+        <div class="flipswitch-inner"></div>
+        <div class="flipswitch-switch"></div>
+    </label>
+
+       </div>
       
       </div>
      
@@ -273,9 +285,16 @@ console.log(selectedImages)
         <p>
          Security man
         </p>
-        <p>
-      <input type="checkbox" {...register('category_id')} />
-       </p>
+        <div className="flipswitch">
+      <input type="checkbox" name="flipswitch" className="flipswitch-cb" {...register('category_id')} id='fs' />
+       
+      <label class="flipswitch-label" htmlFor="fs">
+        <div class="flipswitch-inner"></div>
+        <div class="flipswitch-switch"></div>
+    </label>
+
+       </div>
+
       </div>
    
       <div className='textAreaFieldSection'>
@@ -308,7 +327,7 @@ console.log(selectedImages)
       </div>
 
       <div className="preview-container">
-        {selectedImages.map((image, index) => (
+        {selectedImages?.map((image, index) => (
           <div key={index} className="image-preview">
             <img src={image} className='imageFile' alt={`Preview ${index + 1}`} />
             <button className='preview-remove' onClick={() => handleRemoveImage(index)}>
@@ -334,12 +353,12 @@ console.log(selectedImages)
  <hr />
       {fields.length === 0 && (
 <div className='nearbyPlace' key={0}>
-          <div className='titleSection'>
+          <div className='titleSection place-name'>
             <p>Place Name</p>
           <input {...register(`near_by_places_attributes[0].name`)} />
           </div>
 
-          <div className='titleSection'>
+          <div className='titleSection place-name'>
             <p>Distances</p>
           <input type='number' {...register(`near_by_places_attributes[0].distance`)} />
           </div>
@@ -353,12 +372,12 @@ console.log(selectedImages)
 
 {fields.slice(1).map((item, index) => (
         <div className='nearbyPlace' key={item.id}>
-            <div className='titleSection'>
+            <div className='titleSection place-name'>
             <p>Place Name</p>
           <input {...register(`near_by_places_attributes[${index + 1}].name`)} />
           </div>
 
-          <div className='titleSection'>
+          <div className='titleSection place-name'>
             <p>Distances</p>
           <input type='number' {...register(`near_by_places_attributes[${index + 1}].distance`)} />
           </div>

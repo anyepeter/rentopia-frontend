@@ -5,6 +5,7 @@ import { BsHouseDoor } from 'react-icons/Bs'
 import { AiOutlineStar } from 'react-icons/Ai'
 import QueuePlayNextIcon from '@mui/icons-material/QueuePlayNext';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Link } from 'react-router-dom';
 import LockIcon from '@mui/icons-material/Lock';
 import '../../../Styles/houseListing/siderBar.css';
 
@@ -15,8 +16,8 @@ const HouseSidebar = () => {
        <h1 className='remove-name'>Overview</h1>
        <hr />
        <ul className='siderItems'>
-        <li><span><AiOutlineDashboard /></span><p className='remove-name'>Dashboard</p></li>
-        <li><span><FaRegCommentDots /></span><p className='remove-name'>Comments</p></li>
+        <li><Link className='link-siderbar'><span><AiOutlineDashboard  style={{fontSize: '30'}}/></span><p className='remove-name'>Dashboard</p></Link></li>
+        <li><Link className='link-siderbar'><span><FaRegCommentDots  style={{fontSize: '30'}}/></span><p className='remove-name'>Comments</p></Link></li>
        </ul>
      </section>
 
@@ -24,9 +25,9 @@ const HouseSidebar = () => {
         <h1 className='remove-name'>Manage Property</h1>
         <hr />
         <ul className='siderItems'>
-      <li><span><BsHouseDoor /></span><p className='remove-name'>Listing Properties</p></li>
-      <li><span><AiOutlineStar /></span><p className='remove-name'>Favorite Properties</p></li>
-      <li><span><QueuePlayNextIcon /></span><p className='remove-name'>Submit Property</p></li>
+      <li><Link className='link-siderbar'><span><BsHouseDoor  style={{fontSize: '30'}}/></span><p className='remove-name'>Listing Properties</p></Link></li>
+      <li><Link className='link-siderbar'><span><AiOutlineStar  style={{fontSize: '30'}}/></span><p className='remove-name'>Favorite Properties</p></Link></li>
+      <li><Link className='link-siderbar'><span><QueuePlayNextIcon style={{fontSize: '30'}}/></span><p className='remove-name'>Submit Property</p></Link></li>
        </ul>
      </section>
 
@@ -34,8 +35,8 @@ const HouseSidebar = () => {
      <h1 className='remove-name'>Your details</h1>
         <hr />
         <ul className='siderItems'>
-        <li><span><AccountCircleIcon /></span><p className='remove-name'>Personal Information</p></li>
-        <li><span><LockIcon /></span><p className='remove-name'>Change Password</p></li>
+        <li><Link className='link-siderbar'><span><AccountCircleIcon style={{fontSize: '30'}}/></span><p className='remove-name'>Personal Information</p></Link></li>
+        <li><Link className='link-siderbar'><span><LockIcon  style={{fontSize: '30'}}/></span><p className='remove-name'>Change Password</p></Link></li>
        </ul>
     </section>
 

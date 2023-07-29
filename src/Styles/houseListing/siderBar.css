@@ -1,58 +1,98 @@
 .siderBarContaner{
     height: 100vh;
-    width: auto;
+    width: 20%;
     display: flex;
     flex-direction: column;
-    padding: 2rem 1rem;
-    background-color: rgb(40, 38, 38);
-    
+    padding: 3rem 0;
+    background-color: var(--black);
 }
 
 .siderSection{
-    display: flex;
-    flex-direction: column;
+   
     width: 100%;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+   
+}
+
+.siderSection h1{
+    color: var(--green);
+    font-family: var(--carmata);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 25px;
+    padding-left: 1rem ;
 }
 
 .siderSection hr {
-    height: 2px;
+    height: 1px;
     width: 100%;
     border: none;
-    background-color: aliceblue;
+    background-color: #2B2F36;
+    margin-top: .5rem;
 }
 
 .siderItems{
     display: flex;
-    gap: 1rem;
     flex-direction: column;
     list-style: none;
     margin-top: 1rem;
+    
 }
 
-.siderItems li {
+.link-siderbar{
 display: flex;
-gap: .5rem;
+gap: .7rem;
 color: antiquewhite;
 align-items: center;
 justify-content: flex-start;
+height: 50px;
+padding: 0 1rem; 
+text-decoration: none;
+font-family: var(--muli);
+font-size: 15px;
+line-height: 18px;
+}
+
+.link-siderbar:hover{
+    background-color: rgb(26, 55, 107);
+
 }
 
 /* Addhouse bashboard css */
 
 .homeBashboard{
     display: flex;
-    background-color: var(--blue);
+    background-color: var(--black);
 }
 
 @media screen and (width <= 900px) {
-    .homeBashboard{
-        display: flex;
-        background-color: rgb(129, 57, 57);
-    }
 
+    .siderBarContaner{
+        
+        width: auto;
+      
+    }
+    
     .remove-name{
         display: none;
+    }
+}
+
+@media screen and (width <= 678px) {
+
+    .siderBarContaner{
+        
+        width: auto;
+       padding: 2rem 0; 
+    }
+    
+}
+
+@media screen and (width <= 550px) {
+
+    .siderBarContaner{
+
+        display: none;
+   
     }
 }
