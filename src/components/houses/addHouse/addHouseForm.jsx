@@ -32,20 +32,6 @@ const AddHouse = () => {
 return value;
   }
 
-  const selectPlace = [{
-    name: "school",
-    id: 1
-  }, 
-  {
-    name: "market",
-    id: 2
-  },
-  {
-    name: "hospital",
-    id: 3
-  }
-]
-
   const onSubmit = (data) => {
     dispatch(addHouse(data));
   };

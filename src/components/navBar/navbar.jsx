@@ -7,13 +7,14 @@ import { DropIcon,
     NavContainer, 
     NavLink, 
     PhoneIcon, 
-    SecondNav
+    SecondNav,
+    SubmitHouse
  } from "../../Styles/navbar/Navbar.styled";
 import { theme } from "../../Styles/Global.styled";
 import  logo  from "../../assets/logo.png";
 import { useState } from "react";
 import SelectOption from "./selectOption";
-import { Link } from "react-router-dom";
+
 
 
 const Navbar = () => {
@@ -100,7 +101,7 @@ console.log(option.langueage)
                     
                 </li>
                 <li>
-                   <button> <Link to="add_house">Submit property</Link></button>
+                   <button> <SubmitHouse to="add_house">Submit property</SubmitHouse></button>
                 </li>
               </LoginLink>
               </div>

@@ -1,14 +1,14 @@
 import  Styled, { styled }  from "styled-components";
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
+import PersonIcon from '@mui/icons-material/Person';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import RoomIcon from '@mui/icons-material/Room';
 
 export const HouseStyle = styled.div`
 display: flex;
 flex-direction: column;
 gap: 0.2rem;
-box-shadow: 4px 5px 11px -3px rgba(245,245,245,1));
+box-shadow: 4px 5px 11px -3px rgba(245,245,245,1);
 -webkit-box-shadow: 4px 5px 11px -3px rgba(245,245,245,1);
 -moz-box-shadow: 4px 5px 11px -3px rgba(245,245,245,1);
 `
@@ -105,11 +105,11 @@ color: #fff;
 
 `
 
-export const BsGeoAlt = Styled(LocationOnOutlinedIcon)`
+export const BsGeoAlt = Styled(RoomIcon)`
 color: #46c788;
 `
 
-export const BsPerson = Styled(Person2OutlinedIcon)`
+export const BsPerson = Styled(PersonIcon)`
 color: #46c788;
 `
 

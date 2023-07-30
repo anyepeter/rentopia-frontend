@@ -2,6 +2,7 @@ import  Styled, { styled }  from "styled-components";
 import { HiPhone } from "react-icons/hi";
 import { MdEmail } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 export const NavContainer = Styled.header`
 
@@ -112,4 +113,9 @@ color: ${( {theme }) => theme.colors.primary};
 export const DropIcon = Styled(RiArrowDropDownLine)`
 color: ${( {theme }) => theme.colors.primary};
 font-size: 2rem;
+`
+
+export const SubmitHouse = Styled(Link)`
+text-decoration: none;
+color: #fff;
 `

@@ -12,6 +12,7 @@ display: flex;
 padding: 48px 0;
 justify-content: center;
 width: 100%;
+max-width: 1300px;
 background-color: #F5F5F5;
 div{
     width: 100%;
@@ -44,20 +45,16 @@ div{
 export const ImageContainer = styled.div`
 width: 100%;
 max-width: 1300px;
-padding: 5rem 1rem;
+padding: 3rem 1rem 2rem;
 display: flex;
 justify-content: center;
 flex-direction: column;
-gap: 2rem;
+gap: 1rem;
 background-color: #fff;
 div{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    ul{
-        list-type: none;
-
-    }
 }
 `
 
@@ -68,6 +65,7 @@ padding: 1rem 0;
 display: flex;
 justify-content: center;
 img{
-    width:70%
+    width:90%;
+    height: 90vh;
 }
 `
