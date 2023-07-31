@@ -81,7 +81,6 @@ line-height: 18px;
 @media screen and (width <= 678px) {
 
     .siderBarContaner{
-        
         width: auto;
        padding: 2rem 0; 
     }
@@ -91,8 +90,6 @@ line-height: 18px;
 @media screen and (width <= 550px) {
 
     .siderBarContaner{
-
         display: none;
-   
     }
 }

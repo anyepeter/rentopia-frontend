@@ -14,8 +14,6 @@ const HouseDetail = () => {
    
    const { house, user } = location.state
 
-   console.log(house)
-
    const houseData = [
     {
         name: "school",
@@ -223,17 +221,17 @@ const HouseDetail = () => {
 </video>
         </div>
           </section>
-          <aside>
+          <aside className='aside'>
 
             <div className='contact-info-container'>
-                <div>
+                <div className='contact-info'>
                     <ul>
-                        <li><img src=''/></li>
+                        <li><img src='https://www.befunky.com/images/prismic/82e0e255-17f9-41e0-85f1-210163b0ea34_hero-blur-image-3.jpg?auto=avif,webp&format=jpg&width=896'/></li>
                         <li><p>Losphine Pacheco</p>
                         <p>Email: </p></li>
                     </ul>
 
-                    <div>
+                    <div className='contact-number'>
                         <p>Whatapp business contact</p>
                         <p>671326486</p>
                     </div>
@@ -241,7 +239,7 @@ const HouseDetail = () => {
             </div>
 
 
-            <div>
+            <div className='aside-location-container'>
                
                <h2>Property location</h2>
                <div>
