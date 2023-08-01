@@ -3,7 +3,7 @@ import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100%',
-  height: '600px',
+  height: '500px',
 };
 
 function LocationN({ address, onMapClick }) {
@@ -85,7 +85,7 @@ function LocationN({ address, onMapClick }) {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={address}
-      zoom={200}
+      zoom={10}
       mapTypeId="hybrid"
       onLoad={onLoad}
       onUnmount={onUnmount}

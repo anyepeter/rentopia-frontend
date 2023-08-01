@@ -37,8 +37,7 @@ return value;
   };
 
   const address = {
-    latitude: 3.714528,
-    longitude: 11.034560,
+    latitude: 3.808118661673009, longitude: 11.519562005996704,
   };
 
   const handleMapClick = (lat, lng) => {

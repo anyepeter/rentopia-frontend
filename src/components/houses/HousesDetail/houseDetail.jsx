@@ -11,6 +11,7 @@ import LocationMap from './locationMap';
 
 const HouseDetail = () => {
    const location = useLocation()
+   const [selectedPlace, setSelectedPlace] = React.useState(1);
    
    const { house, user } = location.state
 
@@ -21,15 +22,26 @@ const HouseDetail = () => {
     },
     {
         name: "market",
-        id: 1
+        id: 2
     },
     {
         name: "Hospital",
-        id: 1
+        id: 3
     }
    ]
+console.log(user)
+   console.log(house)
+
+   console.log(selectedPlace)
+
+   const nearbyPlacesData = house.relationships['near-by-places'].data;
+
+   const filteredFields = nearbyPlacesData.filter(
+    (item) =>  item['place-id'] === selectedPlace
+  );
 
 
+  console.log(filteredFields)
 
     return <ThemeProvider theme={theme}>
 
@@ -80,6 +92,11 @@ const HouseDetail = () => {
             </li>
 
             <li>
+                <span>1</span>
+                <p>Kitchen</p>
+            </li>
+
+            <li>
                 <span>2</span>
                 <p>Garage</p>
             </li>
@@ -96,16 +113,16 @@ const HouseDetail = () => {
             <ul className='feature-listing'>
                 <li>
                         <p>Property name:</p>
-                        <p>Ljhfjsdfhj</p>
+                        <p>{house.attributes.title}</p>
                 </li>
                 <li>
                         <p>Property Type:</p>
-                        <p>Apartment</p>
+                        { house.relationships.category.data.name }
 
                 </li>
                 <li>
                         <p>Property owner</p>
-                        <p>Label</p>
+                        <p>{user.attributes.name}</p>
 
                 </li>
                 <li>
@@ -123,24 +140,32 @@ const HouseDetail = () => {
             <ul className='feature-listing-2'>
                 <li>
                         <p>Inside a fance:</p>
-                        <p>Yes</p>
+                        { 
+
+                        house.relationships.security.data.gate ? <p>Yes</p> : <p>No</p>
+                        
+                        }
                 </li>
                 <li>
                    
                         <p>Security man:</p>
-                        <p>yes</p>
+                        { 
+
+                        house.relationships.security.data.securityMan? <p>Yes</p> : <p>No</p>
+
+                         }
                    
                 </li>
                 <li>
                    
                         <p>City address:</p>
-                        <p>Yaounde</p>
+                        <p>{house.relationships.location.data.city}</p>
                   
                 </li>
                 <li>
                    
                    <p>Quater address:</p>
-                   <p>Simbock</p>
+                   <p>{house.relationships.location.data.quater}</p>
              
            </li>
            <li>
@@ -160,11 +185,19 @@ const HouseDetail = () => {
             <ul className='security-item'>
             <li> 
                     <p>Present of a fence and a gate:</p>
-                    <p>Yes</p>
+                    { 
+
+                      house.relationships.security.data.gate ? <p>Yes</p> : <p>No</p>
+
+                     }
             </li>
             <li>
                     <p>Security man included:</p>
-                    <p>yes</p>
+                    { 
+
+                      house.relationships.security.data.securityMan? <p>Yes</p> : <p>No</p>
+
+                     }
                
             </li>
             </ul>
@@ -176,17 +209,17 @@ const HouseDetail = () => {
         </div>
 
 
-        <div>
+        <div className='nearby-container'>
             <h1>Nearby Places</h1>
-            <div>
-                <ul className=''>
+           
+                <ul >
                     {
                         houseData.map((data) => (
-                            <li key={data.id}>{data.name}</li>
+                            <li onClick={() => setSelectedPlace(data.id)} key={data.id}>{data.name}</li>
                         ))
                     }
                 </ul>
-            </div>
+            
 
             <div>
             <table className="blueTable">
@@ -194,46 +227,42 @@ const HouseDetail = () => {
           <tr>
           <th>Name</th>
              <th>Distance</th>
-             <th>head3</th>
             </tr>
          </thead>
          <tbody>
-<tr>
-<td>cell1_1</td>
-<td>cell2_1</td>
-<td>cell3_1</td>
-</tr>
-<tr>
-<td>cell1_2</td>
-<td>cell2_2</td>
-<td>cell3_2</td>
-</tr>
+           {
+            filteredFields.map((item) => (
+                <tr key={item.key}>
+                  <td>{item.name}</td>
+                  <td>{item.distance}</td>
+                </tr>
+            ))
+           }
          </tbody>
             </table>
             </div>
         </div>
 
 
-        <div>
+        <div className='video'>
             <h1>Property Video</h1>
-            <video controls height="220" width="390">
-	<source src="https://www.youtube.com/watch?v=vOXEM1cfrZ4"  />
+            <video controls  width="100%">
+	<source src={house.attributes.video} type="video/mp4" />
 </video>
         </div>
           </section>
           <aside className='aside'>
-
             <div className='contact-info-container'>
                 <div className='contact-info'>
                     <ul>
                         <li><img src='https://www.befunky.com/images/prismic/82e0e255-17f9-41e0-85f1-210163b0ea34_hero-blur-image-3.jpg?auto=avif,webp&format=jpg&width=896'/></li>
-                        <li><p>Losphine Pacheco</p>
-                        <p>Email: </p></li>
+                        <li><p>{user.attributes.name}</p>
+                        <p>{user.attributes.email}</p></li>
                     </ul>
 
                     <div className='contact-number'>
                         <p>Whatapp business contact</p>
-                        <p>671326486</p>
+                        <p>{user.attributes['phone-number']}</p>
                     </div>
                 </div>
             </div>
@@ -249,7 +278,18 @@ const HouseDetail = () => {
 
 
           </aside>
-        </main>    
+        </main> 
+        <section className='comment-container'>
+            <div>
+                <h1>Give Your Review</h1>
+                <hr className='hr-1' />
+                <hr className='hr-2' />
+            </div>
+
+            <form>
+                <textarea className='comment-textarea' />
+            </form>
+        </section>   
         
     </DetailContainer>
     

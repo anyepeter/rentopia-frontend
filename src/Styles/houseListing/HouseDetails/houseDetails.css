@@ -202,3 +202,50 @@ gap: .5rem;
  gap: 1rem;
 }
 
+/*Near by places*/
+
+.nearby-container{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.nearby-container ul{
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+}
+
+.comment-container{
+    align-self:flex-start;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+}
+
+.comment-container div{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-bottom: 1.5rem;
+}
+
+.hr-1{
+    width: 100px;
+    margin-top: .5rem;
+}
+
+.hr-2{
+    width: 50px;
+}
+
+.comment-container form{
+    width: 100%;
+}
+
+.comment-textarea{
+    width: 100%;
+    padding: 10px;
+}

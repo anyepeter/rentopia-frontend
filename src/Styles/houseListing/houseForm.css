@@ -261,9 +261,10 @@ background-color: #F5F5F5;
 .buttonSection input{
     width: 30%;
     height: 50px;
-    background-color: aquamarine;
+    background-color: var(--green);
     border: none;
     border-radius: 5px;
+    color: #fff;
 }
 
 .photos-video{
@@ -326,8 +327,6 @@ background-color: #F5F5F5;
         background-color: var(--text-siler);
         color: #fff;
     }
-
-
 
     .imageFile{
         width: 100px;
