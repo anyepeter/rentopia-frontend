@@ -7,6 +7,7 @@ import { useLocation, Routes, Route } from "react-router-dom"
 import { useEffect } from 'react'
 import { fetchHouses } from './Redux/houses/houseSlice'
 import AddousePage from './pages/addousePage'
+import SingUpPage from './pages/singUpPage'
 
 function App() {
   const dispatch = useDispatch()
@@ -22,6 +23,7 @@ function App() {
       <Route path="houses/:id" element={ <HouseDetailPage /> } />
       <Route path="*" element={<p>Path not resolved</p>} />
       <Route path="add_house/" element={ <AddousePage />} />
+      <Route path='login' element={ <SingUpPage /> } />
      </Routes>
     </>
   )

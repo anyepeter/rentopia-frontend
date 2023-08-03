@@ -14,6 +14,7 @@ import { theme } from "../../Styles/Global.styled";
 import  logo  from "../../assets/logo.png";
 import { useState } from "react";
 import SelectOption from "./selectOption";
+import { Link } from "react-router-dom";
 
 
 
@@ -92,12 +93,7 @@ console.log(option.langueage)
               </NavLink>
               
               <LoginLink>
-                <li>
-                    <a >Login</a>
-                </li>
-                <li>/</li>
-                <li>
-                    <a>Register</a>
+                <li> <Link to='login' >Login / Register</Link>
                     
                 </li>
                 <li>

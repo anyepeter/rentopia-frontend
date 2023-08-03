@@ -5,17 +5,17 @@ import { theme } from '../../../Styles/Global.styled';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import { BsGeoAlt } from '../../../Styles/houseListing/houses';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
-import { useLocation } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import '../../../Styles/houseListing/HouseDetails/houseDetails.css'
 import LocationMap from './locationMap';
 import ImageSwip from './imageSwiper';
 
 const HouseDetail = () => {
    const location = useLocation()
+   const { id } = useParams()
    const [selectedPlace, setSelectedPlace] = React.useState(1);
    
    const { house, user } = location.state
-
    const houseData = [
     {
         name: "school",
@@ -30,10 +30,6 @@ const HouseDetail = () => {
         id: 3
     }
    ]
-console.log(user)
-   console.log(house)
-
-   console.log(selectedPlace)
 
    const nearbyPlacesData = house.relationships['near-by-places'].data;
 
@@ -42,11 +38,9 @@ console.log(user)
   );
 
 
-  console.log(filteredFields)
-
     return <ThemeProvider theme={theme}>
 
-    <DetailContainer>
+    <DetailContainer key={id}>
         <IntroSection>
         <div>
             <h1>Property Single</h1>
