@@ -24,6 +24,7 @@ div{
     h1{
         font-family: ${( {theme }) => theme.fonts.secondary};
         font-size: 28px;
+        
     }
     ul{
         display: flex;
@@ -45,27 +46,23 @@ div{
 export const ImageContainer = styled.div`
 width: 100%;
 max-width: 1300px;
-padding: 3rem 1rem 2rem;
+padding: 3rem 1rem 3rem;
 display: flex;
 justify-content: center;
 flex-direction: column;
-gap: 1rem;
+gap: 2rem;
 background-color: #fff;
-div{
+`
+export const IntroText = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
-}
 `
 
 export const Picture = styled.picture`
-
 width: 100%;
-padding: 1rem 0;
+height: 700px;
 display: flex;
-justify-content: center;
-img{
-    width:90%;
-    height: 90vh;
-}
+flex-direction: column;
+position: relative;
 `

@@ -1,5 +1,5 @@
 import React from 'react';
-import { DetailContainer, ImageContainer, IntroSection, Picture } from '../../../Styles/houseListing/HouseDetails/houseDetailStyle';
+import { DetailContainer, ImageContainer, IntroSection, IntroText, Picture } from '../../../Styles/houseListing/HouseDetails/houseDetailStyle';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../../Styles/Global.styled';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
@@ -8,6 +8,7 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import { useLocation } from 'react-router';
 import '../../../Styles/houseListing/HouseDetails/houseDetails.css'
 import LocationMap from './locationMap';
+import ImageSwip from './imageSwiper';
 
 const HouseDetail = () => {
    const location = useLocation()
@@ -60,21 +61,21 @@ console.log(user)
         </IntroSection>
 
             <ImageContainer>
-                <div>
+                <IntroText>
                    <ul className='propety-items'>
                     <li className='property-type'><p>{house.relationships.category.data.name}</p></li>
-                    <li>{user.attributes.name}</li>
+                    <li><p className='property-name'>{user.attributes.name}</p></li>
                     <li className='property-address'><BsGeoAlt /> {house.relationships.location.data.city}, {house.relationships.location.data.quater}</li>
                    </ul>
 
                    <ul className='propety-items-2'>
                    <li><StarBorderOutlinedIcon /></li>
-                    <li><p>$ {house.attributes.price}</p></li>
-                    <li><p>Fixed Amount</p></li>
+                    <li><p>${house.attributes.price}</p></li>
+                    <li><h4>Fixed Amount</h4></li>
                    </ul>
-                </div>
+                </IntroText>
                   <Picture>
-                  <img src='https://template.unicoderbd.com/homex/assets/images/thumbnail/02.jpg' />
+                  <ImageSwip />
                   </Picture>
             </ImageContainer>
 
@@ -121,7 +122,7 @@ console.log(user)
 
                 </li>
                 <li>
-                        <p>Property owner</p>
+                        <p>Property owner:</p>
                         <p>{user.attributes.name}</p>
 
                 </li>
@@ -184,7 +185,7 @@ console.log(user)
             <h2>Security Details</h2>
             <ul className='security-item'>
             <li> 
-                    <p>Present of a fence and a gate:</p>
+                    <p className='security-item-p'>Present of a fence and a gate:</p>
                     { 
 
                       house.relationships.security.data.gate ? <p>Yes</p> : <p>No</p>
@@ -192,7 +193,7 @@ console.log(user)
                      }
             </li>
             <li>
-                    <p>Security man included:</p>
+                    <p className='security-item-p'>Security man included:</p>
                     { 
 
                       house.relationships.security.data.securityMan? <p>Yes</p> : <p>No</p>
@@ -201,11 +202,6 @@ console.log(user)
                
             </li>
             </ul>
-
-            <div className='security-description-1'>
-                <h1>Security Description</h1>
-                <p>onsectetuer aliquet. Libero porttitor curabitur vivamus accumsan placerat mattis, in lobortis auctor dolor mus, morbi. Dictumst dictumst. Faucibus. Est mollis. Turpis tortor. In vivamus venenatis neque hendrerit risus amet auctor cras, varius augue nullam morbi posuere lacus porttitor dictumst tincidunt </p>
-            </div>
         </div>
 
 
@@ -232,9 +228,9 @@ console.log(user)
          <tbody>
            {
             filteredFields.map((item) => (
-                <tr key={item.key}>
+                <tr key={item.id}>
                   <td>{item.name}</td>
-                  <td>{item.distance}</td>
+                  <td>{item.distance} km</td>
                 </tr>
             ))
            }
@@ -244,10 +240,10 @@ console.log(user)
         </div>
 
 
-        <div className='video'>
+        <div className='video-container'>
             <h1>Property Video</h1>
-            <video controls  width="100%">
-	<source src={house.attributes.video} type="video/mp4" />
+            <video className='video-player' controls >
+	<source className='source' src={house.attributes.video} type="video/mp4" />
 </video>
         </div>
           </section>
@@ -256,12 +252,12 @@ console.log(user)
                 <div className='contact-info'>
                     <ul>
                         <li><img src='https://www.befunky.com/images/prismic/82e0e255-17f9-41e0-85f1-210163b0ea34_hero-blur-image-3.jpg?auto=avif,webp&format=jpg&width=896'/></li>
-                        <li><p>{user.attributes.name}</p>
+                        <li><p className='user-name'>{user.attributes.name}</p>
                         <p>{user.attributes.email}</p></li>
                     </ul>
 
                     <div className='contact-number'>
-                        <p>Whatapp business contact</p>
+                        <h1>Whatapp business contact</h1>
                         <p>{user.attributes['phone-number']}</p>
                     </div>
                 </div>
@@ -287,7 +283,8 @@ console.log(user)
             </div>
 
             <form>
-                <textarea className='comment-textarea' />
+                <textarea placeholder='Comments' className='comment-textarea' />
+                <input type='submit' className='comment-button'/>
             </form>
         </section>   
         
