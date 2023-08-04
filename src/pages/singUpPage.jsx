@@ -1,10 +1,16 @@
 import React from 'react';
-import AuthenticationPage from '../components/Authentication/authenticateNavbar';
+import SingUp from '../components/Authentication/authenticateSingUp';
+import AuthenticateSider from '../components/Authentication/authenticateSibar';
 
 const SingUpPage = () => {
+
+  const test = {
+    address: 'register'
+  };
     return <>
     
-      <AuthenticationPage />
+      <AuthenticateSider test={test}/>
+      <SingUp />
 
     </>;
 }

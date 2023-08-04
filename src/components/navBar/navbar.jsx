@@ -93,7 +93,7 @@ console.log(option.langueage)
               </NavLink>
               
               <LoginLink>
-                <li> <Link to='login' >Login / Register</Link>
+                <li> <Link to='/login' >Login / Register</Link>
                     
                 </li>
                 <li>

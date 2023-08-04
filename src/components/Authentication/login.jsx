@@ -1,21 +1,21 @@
 import React from 'react';
-import { Link, Routes } from 'react-router-dom';
-import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import '../../Styles/authentication/AuthenticateNavbar.css'
-import NavbarSider from './navbarSider';
 
-const AuthenticationPage = () => {
+const Login = () => {
+   const { register, handleSubmit } = useForm()
+   const onSubmit = (data) => console.log(data)
+
+   const navigate = useNavigate();
+
+   const handleClick = (event) => {
+ 
+     navigate('/registers');
+   }
+
+
     return <>
-         <section className='authenticate-navbar'>
-            <div>
-           <div>Login</div>
-           <ul className='authenticate-navbar-link'>
-            <li><Link to='/'>Home</Link></li>
-            <li><KeyboardArrowRightOutlinedIcon /></li>
-            <li><p>Login</p></li>
-           </ul>
-           </div>
-         </section>
          <main>
             <section>
                <div>
@@ -36,13 +36,36 @@ const AuthenticationPage = () => {
             </section>
 
              <section>
-             <NavbarSider />
-              <Routes>
-              </Routes>
+               <ul>
+               <li>
+                     <p>Login</p>
+                     <hr />
+                  </li>
+                  <li>
+                     <p onClick={handleClick} >Register</p>
+                  </li>
+
+               </ul>
+
+               <form onSubmit={handleSubmit(onSubmit)}>
+
+
+        <label htmlFor='email'>
+        <input {...register("email")} id='email'/>
+        </label>
+
+
+        <label htmlFor='password'>
+        <input {...register("password")} />
+        </label>
+      
+      <input type="submit" />
+    </form>
+
             </section>
          </main>
 
     </>;
 }
 
-export default AuthenticationPage;
+export default Login;
