@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+
 const SIGNUP_USER = 'redux/singup/';
 const LOGIN_USER = 'redux/login/'
 
@@ -15,8 +16,12 @@ export const signupUser = createAsyncThunk(SIGNUP_USER, async (userInfo, thunkAP
       'content-type': 'application/json',
     },
   };
+
+  
   try {
-    return await axios.post(API_URL, JSON.stringify(userInfo), requestOptions);
+    const response = await axios.post(API_URL, userInfo, requestOptions);
+    console.log(response)
+    return response.data
   } catch (error) {
     return thunkAPI.rejectWithValue(error, "Error creating request");
   }
@@ -33,7 +38,10 @@ export const getAccessToken = createAsyncThunk(LOGIN_USER, async (userInfo, thun
       },
     };
     try {
-      return await axios.post(LOGIN, JSON.stringify(userInfo), requestOptions);
+ 
+      const response = await axios.post(LOGIN, userInfo, requestOptions);
+      console.log(response.data)
+      return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error, "Error creating request");
     }
@@ -45,7 +53,6 @@ const initialState = {
   isLoading: false,
   error: null,
   success: false,
-  status: '',
 };
 
 const registerSlice = createSlice({
@@ -55,13 +62,12 @@ const registerSlice = createSlice({
     //register a user
     reduce
       .addCase(signupUser.fulfilled, (state, action) => {
-        localStorage.setItem('token', action.payload.data.token);
+        localStorage.setItem('token', action.payload.token);
         return {
           ...state,
           isLoading: false,
           success: true,
-          token: action.payload.data.token,
-          status: action.payload.status,
+          token: action.payload.token,
         };
       })
       .addCase(signupUser.pending, (state) => ({
@@ -82,13 +88,13 @@ const registerSlice = createSlice({
         isLoading: true,
       }));
     reduce.addCase(getAccessToken.fulfilled, (state, action) => {
-      localStorage.setItem('token', action.payload.data.token);
+      localStorage.setItem('token', action.payload.token);
+      console.log(action.payload.token)
       return {
         ...state,
         isLoading: false,
         success: true,
-        token: action.payload.data.token,
-        status: action.payload.status,
+        token: action.payload.token,
       };
     });
     reduce.addCase(getAccessToken.rejected, (state) => ({

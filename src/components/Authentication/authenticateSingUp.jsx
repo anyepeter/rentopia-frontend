@@ -2,10 +2,25 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import '../../Styles/authentication/AuthenticateNavbar.css'
+import { useDispatch } from 'react-redux';
+import { signupUser } from '../../Redux/authentication/singup';
 
 const SingUp = () => {
-   const { register, handleSubmit } = useForm()
-   const onSubmit = (data) => console.log(data)
+   const dispatch = useDispatch()
+   const { handleSubmit, register } = useForm();
+   const onSubmit = async (data) => {
+    console.log(data)
+    const requestData = new FormData();
+requestData.append('name', data.name);
+requestData.append('email', data.email);
+requestData.append('password', data.password);
+requestData.append('phone_number', data.phone_number);
+requestData.append('occupation', data.occupation);
+const avater = JSON.stringify(data.avatar[0])
+requestData.append('avatar', avater); 
+
+    dispatch(signupUser(requestData));
+  }
 
    const navigate = useNavigate();
 
@@ -46,10 +61,10 @@ const SingUp = () => {
                   </li>
                </ul>
 
-               <form onSubmit={handleSubmit(onSubmit)}>
+               <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
 
         <label htmlFor='username'><p>Username</p>
-        <input {...register("firstName")} id='username' />
+        <input {...register("name")} id='name' />
         </label>
 
         <label htmlFor='email'><p>Email</p>
@@ -57,16 +72,18 @@ const SingUp = () => {
         </label>
 
         <label htmlFor='number'><p>Phone Number</p>
-        <input {...register("number")} />
+        <input {...register("phone_number")} />
         </label>
 
         <label htmlFor='occupation'><p>Occupation</p>
-        <input {...register("Occupation")} />
+        <input {...register("occupation")} />
         </label>
 
-        <label htmlFor='avatar'><p>Avatar</p>
-        <input type='file' {...register("avatar")} />
-        </label>
+        <label htmlFor='avatar'>
+    <p>Avatar</p>
+    <input type='file' {...register("avatar")} />
+  </label>
+
       
         <label htmlFor='password'><p>Password</p>
         <input {...register("password")} />

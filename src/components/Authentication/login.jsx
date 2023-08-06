@@ -2,10 +2,17 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import '../../Styles/authentication/AuthenticateNavbar.css'
+import { useDispatch } from 'react-redux';
+import { getAccessToken } from '../../Redux/authentication/singup';
 
 const Login = () => {
+   const dispacth = useDispatch()
+
+
    const { register, handleSubmit } = useForm()
-   const onSubmit = (data) => console.log(data)
+   const onSubmit = (data) => {
+      dispacth(getAccessToken(data))
+   }
 
    const navigate = useNavigate();
 
