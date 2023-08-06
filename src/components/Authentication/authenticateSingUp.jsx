@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import '../../Styles/authentication/AuthenticateNavbar.css'
 import { useDispatch } from 'react-redux';
 import { signupUser } from '../../Redux/authentication/singup';
@@ -16,7 +17,7 @@ requestData.append('email', data.email);
 requestData.append('password', data.password);
 requestData.append('phone_number', data.phone_number);
 requestData.append('occupation', data.occupation);
-const avater = JSON.stringify(data.avatar[0])
+const avater = data.avatar[0]
 requestData.append('avatar', avater); 
 
     dispatch(signupUser(requestData));
@@ -31,6 +32,7 @@ requestData.append('avatar', avater);
 
 
     return <>
+    <section className='authentcation-section'>
          <main className="authenticate-container"> 
             <section className='welcome-container'>
                <div className='welcome-section'>
@@ -43,9 +45,9 @@ requestData.append('avatar', avater);
                <div className='check-section'>
                 <h2>Keep in a mind a few basic password rules :</h2>
                 <ul className='check-container'>
-                    <li><span></span> <p>Change your passwords periodically</p></li>
-                    <li><span></span> <p>Avoid re-using password for multiple site</p></li>
-                    <li><span></span> <p>Use complex characters including uppercase and number</p></li>
+                    <li><CheckBoxOutlinedIcon /> <p>Change your passwords periodically</p></li>
+                    <li><CheckBoxOutlinedIcon /> <p>Avoid re-using password for multiple site</p></li>
+                    <li><CheckBoxOutlinedIcon /> <p>Use complex characters including uppercase and number</p></li>
                 </ul>
                </div>
             </section>
@@ -61,22 +63,22 @@ requestData.append('avatar', avater);
                   </li>
                </ul>
 
-               <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+               <form className='signup-form' onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
 
         <label htmlFor='username'><p>Username</p>
-        <input {...register("name")} id='name' />
+        <input className='singup-input' {...register("name")} id='name' />
         </label>
 
         <label htmlFor='email'><p>Email</p>
-        <input {...register("email")} id='email'/>
+        <input className='singup-input' {...register("email")} id='email'/>
         </label>
 
         <label htmlFor='number'><p>Phone Number</p>
-        <input {...register("phone_number")} />
+        <input className='singup-input' {...register("phone_number")} />
         </label>
 
         <label htmlFor='occupation'><p>Occupation</p>
-        <input {...register("occupation")} />
+        <input className='singup-input' {...register("occupation")} />
         </label>
 
         <label htmlFor='avatar'>
@@ -86,7 +88,7 @@ requestData.append('avatar', avater);
 
       
         <label htmlFor='password'><p>Password</p>
-        <input {...register("password")} />
+        <input className='singup-input' {...register("password")} />
         </label>
       <p>
       <input type="submit" />
@@ -96,7 +98,7 @@ requestData.append('avatar', avater);
 
             </section>
          </main>
-
+         </section>
     </>;
 }
 

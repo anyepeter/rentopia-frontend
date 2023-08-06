@@ -13,14 +13,14 @@ export const signupUser = createAsyncThunk(SIGNUP_USER, async (userInfo, thunkAP
   const requestOptions = {
     method: "POST",
     headers: {
-      'content-type': 'application/json',
+      'Content-Type': 'multipart/form-data',
     },
   };
 
   
   try {
     const response = await axios.post(API_URL, userInfo, requestOptions);
-    console.log(response)
+  console.log(response.data)
     return response.data
   } catch (error) {
     return thunkAPI.rejectWithValue(error, "Error creating request");

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import '../../Styles/authentication/AuthenticateNavbar.css'
 import { useDispatch } from 'react-redux';
+import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined'
 import { getAccessToken } from '../../Redux/authentication/singup';
 
 const Login = () => {
@@ -35,9 +36,9 @@ const Login = () => {
                <div className='check-section'>
                 <h2>Keep in a mind a few basic password rules :</h2>
                 <ul className='check-container'>
-                    <li><span></span> <p>Change your passwords periodically</p></li>
-                    <li><span></span> <p>Avoid re-using password for multiple site</p></li>
-                    <li><span></span> <p>Use complex characters including uppercase and number</p></li>
+                    <li><CheckBoxOutlinedIcon /> <p>Change your passwords periodically</p></li>
+                    <li><CheckBoxOutlinedIcon /> <p>Avoid re-using password for multiple site</p></li>
+                    <li><CheckBoxOutlinedIcon /> <p>Use complex characters including uppercase and number</p></li>
                 </ul>
                </div>
             </section>
@@ -54,16 +55,16 @@ const Login = () => {
 
                </ul>
 
-               <form onSubmit={handleSubmit(onSubmit)}>
+               <form className='signup-form' onSubmit={handleSubmit(onSubmit)}>
 
 
         <label htmlFor='email'>
-        <input {...register("email")} id='email'/>
+        <input className='singup-input' {...register("email")} id='email'/>
         </label>
 
 
         <label htmlFor='password'>
-        <input {...register("password")} />
+        <input className='singup-input' {...register("password")} />
         </label>
       
       <input type="submit" />
