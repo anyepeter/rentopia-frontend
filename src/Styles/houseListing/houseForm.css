@@ -340,26 +340,29 @@ background-color: #F5F5F5;
         flex-direction: column;
     }
 
-    .flipswitch {
+    .flipswitch, .flipswitch-1 {
         position: relative;
         width: 91px;
       }
-      .flipswitch input[type=checkbox] {
+      .flipswitch input[type=checkbox], .flipswitch-1 input[type=checkbox] {
         display: none;
       }
-      .flipswitch-label {
+      .flipswitch-label, .flipswitch-label-1 {
         display: block;
         overflow: hidden;
         cursor: pointer;
         border: 0px solid #949993;
         border-radius: 49px;
       }
-      .flipswitch-inner {
+      .flipswitch-inner, .flipswitch-inner-1 {
         width: 200%;
         margin-left: -100%;
         transition: margin 0.3s ease-in 0s;
       }
-      .flipswitch-inner:before, .flipswitch-inner:after {
+      .flipswitch-inner:before, 
+      .flipswitch-inner:after,
+      .flipswitch-inner-1:before,
+      .flipswitch-inner-1:after {
         float: left;
         width: 50%;
         height: 37px;
@@ -371,20 +374,23 @@ background-color: #F5F5F5;
         font-weight: bold;
         box-sizing: border-box;
       }
-      .flipswitch-inner:before {
+      .flipswitch-inner:before,
+      .flipswitch-inner-1:before {
         content: "No";
         padding-left: 15px;
         background-color: #EDEDED;
         color: #74777B;
       }
-      .flipswitch-inner:after {
+      .flipswitch-inner:after,
+      .flipswitch-inner-1:after {
         content: "Yes";
         padding-right: 12px;
         background-color: #34C788;
         color: #FFFFFF;
         text-align: right;
       }
-      .flipswitch-switch {
+      .flipswitch-switch,
+      .flipswitch-switch-1 {
         width: 31px;
         margin: 3px;
         background: #FFFFFF;

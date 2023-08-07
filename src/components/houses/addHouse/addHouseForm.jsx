@@ -15,44 +15,21 @@ const AddHouse = () => {
     name: 'near_by_places_attributes',
   });
   const dispatch = useDispatch();
- 
-
-  const handleAddPlace = () => {
-    if (fields.length === 0) {
-      append({ name: '', distance: '', place_id: '' });
-    }
-  };
 
   const [clickedLocation, setClickedLocation] = useState(null);
+  const [selectedImages, setSelectedImages] = useState([]);
 
+  console.log(selectedImages)
 
-  const handlePlaceChange = (value) => {
-    console.log(value)
-    SetselectsPlace(value)
-return value;
-  }
-
-  const onSubmit = (data) => {
-    dispatch(addHouse(data));
-  };
-
+//Handle map click/ location and address
   const address = {
     latitude: 3.808118661673009, longitude: 11.519562005996704,
   };
-
   const handleMapClick = (lat, lng) => {
     setClickedLocation({ latitude: lat, longitude: lng });
   };
 
-  console.log(clickedLocation)
-
-
-
-
-//Handle image input files preview 
-
-  const [selectedImages, setSelectedImages] = useState([]);
-console.log(selectedImages)
+//Handle image input files preview and remove
   const handleImageChange = (e) => {
     const files = e.target.files;
     const newImages = [];
@@ -76,6 +53,54 @@ console.log(selectedImages)
     const updatedImages = [...selectedImages];
     updatedImages.splice(index, 1);
     setSelectedImages(updatedImages);
+  };
+
+
+  const onSubmit = (data) => {
+    console.log(data)
+
+    const  formData = new FormData();
+
+    // Append text data to formData
+    formData.append('title', data.title);
+    formData.append('category', data.category);
+    formData.append('numberOfProperty', data.numberOfProperty);
+    formData.append('price', data.price);
+    formData.append('bedroom', data.bedroom);
+    formData.append('bathroom', data.bathroom);
+    formData.append('kitchen', data.kitchen);
+    formData.append('waterSource', data.waterSource);
+    formData.append('metalType', data.metalType);
+    formData.append('description', data.houseDescription);
+
+
+     // Append location data
+    formData.append('location_attributes[city]', data.city);
+    formData.append('location_attributes[quatar]', data.quatar);
+    formData.append('location_attributes[latitude]', clickedLocation.latitude);
+    formData.append('location_attributes[longitude]', clickedLocation.longitude);
+
+
+     //Append security data
+     formData.append('security-attributes[gate]', data.gate);
+     formData.append('security_attributes[securityMan]', data.securityMan);
+
+
+    // Append images to formData
+    for (let i = 0; i < selectedImages.length; i++) {
+      formData.append('images[]', selectedImages[i]);
+    }
+    formData.append('video', data.video[0]);
+
+
+    // Append near by places to formData
+    data.near_by_places_attributes.forEach((place, index) => {
+      formData.append(`near_by_places_attributes[${index}][name]`, place.name);
+      formData.append(`near_by_places_attributes[${index}][distance]`, place.distance);
+      formData.append(`near_by_places_attributes[${index}][place_id]`, place.place_id);
+    });
+
+     dispatch(addHouse(formData));
   };
 
   return (
@@ -112,7 +137,7 @@ console.log(selectedImages)
         <p>
           Number of Property
         </p>
-      <input type="number" {...register('category_id')} />
+      <input type="number" {...register('numberOfProperty')} />
       </div>
 
       </div>
@@ -125,21 +150,21 @@ console.log(selectedImages)
        <p> 
         Price
         </p>
-       <input type="number" {...register('user_id')} />
+       <input type="number" {...register('price')} />
       </div>
 
       <div className='titleSection'>
   <p>
     Bedroom
   </p>
-<input type="number" {...register('category_id')} />
+<input type="number" {...register('bedroom')} />
       </div>
 
       <div className='titleSection'>
        <p>
          Bathroom
        </p>
-       <input type="number" {...register('category_id')} />
+       <input type="number" {...register('bathroom')} />
       </div>
 
       </div>
@@ -148,31 +173,31 @@ console.log(selectedImages)
 
        <div className='titleSection'>
        <p> 
-        Ketchen
+        Kitchen
         </p>
-       <input type="number" {...register('user_id')} />
+       <input type="number" {...register('kitchen')} />
       </div>
 
       <div className='titleSection'>
   <p>
     water source
   </p>
-  <select {...register("category")}>
+  <select {...register("waterSource")}>
         <option value="1">--Choose--</option>
-        <option value="1">Studio</option>
-        <option value="2">Single Room</option>
-        <option value="3">Appartment</option>
+        <option value="1">Cam-Water</option>
+        <option value="2">forage</option>
+        <option value="3">well</option>
       </select>
       </div>
 
       <div className='titleSection'>
        <p>
-         Electricity type
+         Electricity metal type
        </p>
-       <select {...register("category")}>
+       <select {...register("metalType")}>
         <option value="1">--Choose--</option>
-        <option value="1">Studio</option>
-        <option value="2">Single Room</option>
+        <option value="1">Enoe</option>
+        <option value="2">pre-paid metal</option>
       </select>
       </div>
 
@@ -184,11 +209,11 @@ console.log(selectedImages)
          Present of a garage?
         </p>
         <div className="flipswitch">
-      <input type="checkbox" name="flipswitch" className="flipswitch-cb" {...register('catory_id')} id='fs' checked/>
+      <input type="checkbox" className="flipswitch-cb"  id='fsss' {...register('garage')}/>
        
-      <label class="flipswitch-label" htmlFor="fs">
-        <div class="flipswitch-inner"></div>
-        <div class="flipswitch-switch"></div>
+      <label className="flipswitch-label" htmlFor="fsss">
+        <div className="flipswitch-inner"></div>
+        <div className="flipswitch-switch"></div>
     </label>
 
        </div>
@@ -204,7 +229,7 @@ console.log(selectedImages)
          Description
        </p>
 
-      <textarea type='textarea' {...register('location_attributes.city')} placeholder='Write details' />
+      <textarea type='textarea' {...register('houseDescription')} placeholder='Write details' />
 
      </div>
 
@@ -224,14 +249,14 @@ console.log(selectedImages)
         <p> 
           City
         </p>
-      <input type="number" {...register('user_id')} />
+      <input type="number" {...register('city')} />
       </div>
      
       <div className='titleSection'>
         <p>
-          Quater
+          Quatar
         </p>
-      <input type="number" {...register('category_id')} />
+      <input type="number" {...register('quatar')} />
       </div>
     </div>
 
@@ -255,11 +280,11 @@ console.log(selectedImages)
          The present of a Gate in the property
         </p>
         <div className="flipswitch">
-      <input type="checkbox" name="flipswitch" className="flipswitch-cb" {...register('category_id')} id='fs' />
+      <input type="checkbox" className="flipswitch-cb"  id='fss' {...register('gate')} />
        
-      <label class="flipswitch-label" htmlFor="fs">
-        <div class="flipswitch-inner"></div>
-        <div class="flipswitch-switch"></div>
+      <label className="flipswitch-label" htmlFor="fss">
+        <div className="flipswitch-inner"></div>
+        <div className="flipswitch-switch"></div>
     </label>
 
        </div>
@@ -271,11 +296,11 @@ console.log(selectedImages)
          Security man
         </p>
         <div className="flipswitch">
-      <input type="checkbox" name="flipswitch" className="flipswitch-cb" {...register('category_id')} id='fs' />
+      <input type="checkbox" className="flipswitch-cb" {...register('securityMan')} id='fs' />
        
-      <label class="flipswitch-label" htmlFor="fs">
-        <div class="flipswitch-inner"></div>
-        <div class="flipswitch-switch"></div>
+      <label className="flipswitch-label" htmlFor="fs">
+        <div className="flipswitch-inner"></div>
+        <div className="flipswitch-switch"></div>
     </label>
 
        </div>
@@ -288,7 +313,7 @@ console.log(selectedImages)
         Security Description
        </p>
 
-      <textarea type='textarea' {...register('location_attributes.city')} placeholder='Write details' />
+      <textarea type='textarea' {...register('securityDescription')} placeholder='Write details' />
 
      </div>
     </section>
@@ -324,8 +349,8 @@ console.log(selectedImages)
     </div>
 
      <div>
-      <p>Vidoe</p>
-      <input type='file' {...register('images[]')} multiple />
+      <p>Video</p>
+      <input type='file' {...register('video')} multiple />
      </div>
 
     </section>
@@ -336,47 +361,28 @@ console.log(selectedImages)
  <h2>Add Nearby Places</h2>
 
  <hr />
-      {fields.length === 0 && (
-<div className='nearbyPlace' key={0}>
-          <div className='titleSection place-name'>
-            <p>Place Name</p>
-          <input {...register(`near_by_places_attributes[0].name`)} />
-          </div>
+ {fields.map((item, index) => (
+    <div className='nearbyPlace' key={item.id}>
+      <div className='titleSection place-name'>
+        <p>Place Name</p>
+        <input {...register(`near_by_places_attributes[${index}].name`)} />
+      </div>
 
-          <div className='titleSection place-name'>
-            <p>Distances</p>
-          <input type='number' {...register(`near_by_places_attributes[0].distance`)} />
-          </div>
+      <div className='titleSection place-name'>
+        <p>Distances</p>
+        <input type='number' {...register(`near_by_places_attributes[${index}].distance`)} />
+      </div>
 
-          <div className='titleSection'>
-            <p>Place Category</p>
-         <input {...register(`near_by_places_attributes[0].place_id`)} />
-         </div>
-        </div>
-      )}
+      <div className='titleSection'>
+        <p>Place Category</p>
+        <input type='number' {...register(`near_by_places_attributes[${index}].place_id`)} />
+      </div>
 
-{fields.slice(1).map((item, index) => (
-        <div className='nearbyPlace' key={item.id}>
-            <div className='titleSection place-name'>
-            <p>Place Name</p>
-          <input {...register(`near_by_places_attributes[${index + 1}].name`)} />
-          </div>
-
-          <div className='titleSection place-name'>
-            <p>Distances</p>
-          <input type='number' {...register(`near_by_places_attributes[${index + 1}].distance`)} />
-          </div>
-
-          <div className='titleSection'>
-            <p>Place Category</p>
-         <input {...register(`near_by_places_attributes[${index + 1}].place_id`)} />
-         </div>
-         <button className='remove' type="button" onClick={() => remove(index)}>
-            <CloseOutlinedIcon />
-          </button>
-        </div>
-      ))}
-
+      <button className='remove' type="button" onClick={() => remove(index)}>
+        <CloseOutlinedIcon />
+      </button>
+    </div>
+  ))}
       <button className='add' type="button" onClick={() => append({})}>
         <AddOutlinedIcon />
       </button>

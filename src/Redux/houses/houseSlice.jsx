@@ -16,12 +16,12 @@ export const fetchHouses = createAsyncThunk(GET_HOUSES, async () => {
 
 //add a house
 export const addHouse = createAsyncThunk(POST_HOUSES, async (data, thunkAPI) => {
-  // const token = localStorage.getItem('token');
+ const token = localStorage.getItem('token');
   const requestOptions = {
     method: 'POST',
     headers: {
       'Content-Type': 'multipart/form-data',
-      // Authorization: `Bearer ${token}`,
+       Authorization: `Bearer ${token}`,
     },
   };
   try {
