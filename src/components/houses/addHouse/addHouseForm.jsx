@@ -63,41 +63,41 @@ const AddHouse = () => {
 
     // Append text data to formData
     formData.append('title', data.title);
-    formData.append('category', data.category);
-    formData.append('numberOfProperty', data.numberOfProperty);
+    formData.append('category_id', data.category);
+    formData.append('number_of_houses', data.numberOfProperty);
     formData.append('price', data.price);
+    formData.append('garage', data.garage);
     formData.append('bedroom', data.bedroom);
     formData.append('bathroom', data.bathroom);
     formData.append('kitchen', data.kitchen);
-    formData.append('waterSource', data.waterSource);
-    formData.append('metalType', data.metalType);
+    formData.append('water_source', data.waterSource);
+    formData.append('metal_type', data.metalType);
     formData.append('description', data.houseDescription);
 
 
      // Append location data
     formData.append('location_attributes[city]', data.city);
-    formData.append('location_attributes[quatar]', data.quatar);
+    formData.append('location_attributes[quater]', data.quatar);
     formData.append('location_attributes[latitude]', clickedLocation.latitude);
     formData.append('location_attributes[longitude]', clickedLocation.longitude);
 
-
      //Append security data
-     formData.append('security-attributes[gate]', data.gate);
+     formData.append('security_attributes[gate]', data.gate);
      formData.append('security_attributes[securityMan]', data.securityMan);
 
 
     // Append images to formData
-    for (let i = 0; i < selectedImages.length; i++) {
-      formData.append('images[]', selectedImages[i]);
+    for (let i = 0; i < data.images.length; i++) {
+      formData.append('images[]', data.images[i]);
     }
     formData.append('video', data.video[0]);
 
 
     // Append near by places to formData
-    data.near_by_places_attributes.forEach((place, index) => {
-      formData.append(`near_by_places_attributes[${index}][name]`, place.name);
-      formData.append(`near_by_places_attributes[${index}][distance]`, place.distance);
-      formData.append(`near_by_places_attributes[${index}][place_id]`, place.place_id);
+    data.near_by_places_attributes.forEach((place) => {
+      formData.append(`near_by_places_attributes[][name]`, place.name);
+      formData.append(`near_by_places_attributes[][distance]`, place.distance);
+      formData.append(`near_by_places_attributes[][place_id]`, place.place_id);
     });
 
      dispatch(addHouse(formData));
@@ -183,10 +183,10 @@ const AddHouse = () => {
     water source
   </p>
   <select {...register("waterSource")}>
-        <option value="1">--Choose--</option>
-        <option value="1">Cam-Water</option>
-        <option value="2">forage</option>
-        <option value="3">well</option>
+        <option>--Choose--</option>
+        <option value="Cam_water">Cam-Water</option>
+        <option value="forage">forage</option>
+        <option value="well">well</option>
       </select>
       </div>
 
@@ -195,9 +195,9 @@ const AddHouse = () => {
          Electricity metal type
        </p>
        <select {...register("metalType")}>
-        <option value="1">--Choose--</option>
-        <option value="1">Enoe</option>
-        <option value="2">pre-paid metal</option>
+        <option >--Choose--</option>
+        <option value="Enoe">Enoe</option>
+        <option value="pre-paid">pre-paid metal</option>
       </select>
       </div>
 
@@ -306,47 +306,44 @@ const AddHouse = () => {
        </div>
 
       </div>
-   
-      <div className='textAreaFieldSection'>
-
-       <p>
-        Security Description
-       </p>
-
-      <textarea type='textarea' {...register('securityDescription')} placeholder='Write details' />
-
-     </div>
     </section>
 
  {//  property Images and video
  }
 
-    <section className='photos-video' >
-      <h2>Add Photos and Videos</h2>
-      <hr />
+<section className='photos-video' >
+  <h2>Add Photos and Videos</h2>
+  <hr />
 
-      <div>
-      <div className="container">
-        <input
-          className="custom-file-input"
-          type="file"
-          onChange={handleImageChange}
-          multiple
-          
-        />
-      </div>
-
-      <div className="preview-container">
-        {selectedImages?.map((image, index) => (
-          <div key={index} className="image-preview">
-            <img src={image} className='imageFile' alt={`Preview ${index + 1}`} />
-            <button className='preview-remove' onClick={() => handleRemoveImage(index)}>
-            <CloseOutlinedIcon style={{ fontSize: '15' }}/>
-            </button>
-          </div>
-        ))}
-      </div>
+  <Controller
+  name="images" 
+  control={control}
+  render={({ field }) => (
+    <div className="container">
+      <input
+        className="custom-file-input"
+        type="file"
+        onChange={(e) => {
+          field.onChange(e.target.files); // Update the images field value with the FileList object
+          handleImageChange(e); 
+        }}
+        multiple
+      />
     </div>
+  )}
+/>
+
+
+  <div className="preview-container">
+    {selectedImages?.map((image, index) => (
+      <div key={index} className="image-preview">
+        <img src={image} className='imageFile' alt={`Preview ${index + 1}`} />
+        <button className='preview-remove' onClick={() => handleRemoveImage(index)}>
+          <CloseOutlinedIcon style={{ fontSize: '15' }}/>
+        </button>
+      </div>
+    ))}
+  </div>
 
      <div>
       <p>Video</p>

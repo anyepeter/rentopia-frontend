@@ -281,6 +281,7 @@ background-color: #F5F5F5;
     .container {
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
     }
     .custom-file-input {
     width: 100%;

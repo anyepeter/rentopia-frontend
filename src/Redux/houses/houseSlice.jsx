@@ -25,10 +25,13 @@ export const addHouse = createAsyncThunk(POST_HOUSES, async (data, thunkAPI) => 
     },
   };
   try {
-    return await axios.post('http://127.0.0.1:3000/houses', data, requestOptions);
+    const response = await axios.post('http://127.0.0.1:3000/houses', data, requestOptions);
+    return response.data;
   } catch (error) {
+    console.error('Server Error:', error.response.data); // Log the detailed error response
     return thunkAPI.rejectWithValue(error.response.data.error);
   }
+  
 });
 
 

@@ -45,9 +45,9 @@ requestData.append('avatar', avater);
                <div className='check-section'>
                 <h2>Keep in a mind a few basic password rules :</h2>
                 <ul className='check-container'>
-                    <li><CheckBoxOutlinedIcon /> <p>Change your passwords periodically</p></li>
-                    <li><CheckBoxOutlinedIcon /> <p>Avoid re-using password for multiple site</p></li>
-                    <li><CheckBoxOutlinedIcon /> <p>Use complex characters including uppercase and number</p></li>
+                    <li><CheckBoxOutlinedIcon className='tickbox' /> <p>Change your passwords periodically</p></li>
+                    <li><CheckBoxOutlinedIcon className='tickbox'  /> <p>Avoid re-using password for multiple site</p></li>
+                    <li><CheckBoxOutlinedIcon className='tickbox'  /> <p>Use complex characters including uppercase and number</p></li>
                 </ul>
                </div>
             </section>
@@ -63,14 +63,14 @@ requestData.append('avatar', avater);
                   </li>
                </ul>
 
-               <form className='signup-form' onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+       <form className='signup-form' onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
 
-        <label htmlFor='username'><p>Username</p>
+        <label htmlFor='name'><p>Username</p>
         <input className='singup-input' {...register("name")} id='name' />
         </label>
 
         <label htmlFor='email'><p>Email</p>
-        <input className='singup-input' {...register("email")} id='email'/>
+        <input className='singup-input'  {...register("email")} id='email'/>
         </label>
 
         <label htmlFor='number'><p>Phone Number</p>
@@ -78,20 +78,19 @@ requestData.append('avatar', avater);
         </label>
 
         <label htmlFor='occupation'><p>Occupation</p>
-        <input className='singup-input' {...register("occupation")} />
+        <input className='singup-input'  {...register("occupation")} />
+        </label>
+
+        <label htmlFor='password'><p>Password</p>
+        <input className='singup-input'  {...register("password")} />
         </label>
 
         <label htmlFor='avatar'>
-    <p>Avatar</p>
-    <input type='file' {...register("avatar")} />
-  </label>
-
-      
-        <label htmlFor='password'><p>Password</p>
-        <input className='singup-input' {...register("password")} />
+          <p>Avatar</p>
+          <input type='file' {...register("avatar")} />
         </label>
       <p>
-      <input type="submit" />
+      <button className='button-submit' type="submit">Register</button>
       </p>
       
     </form>
