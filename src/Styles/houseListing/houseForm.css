@@ -377,17 +377,18 @@ background-color: #F5F5F5;
       }
       .flipswitch-inner:before,
       .flipswitch-inner-1:before {
-        content: "No";
+        content: "Yes";
         padding-left: 15px;
-        background-color: #EDEDED;
-        color: #74777B;
+        background-color: #34C788;
+        color: #FFFFFF;
+        
       }
       .flipswitch-inner:after,
       .flipswitch-inner-1:after {
-        content: "Yes";
+        content: "No";
         padding-right: 12px;
-        background-color: #34C788;
-        color: #FFFFFF;
+        background-color: #EDEDED;
+        color: #74777B;
         text-align: right;
       }
       .flipswitch-switch,

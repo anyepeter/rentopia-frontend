@@ -6,6 +6,7 @@ const SIGNUP_USER = 'redux/singup/';
 const LOGIN_USER = 'redux/login/'
 
 const token = localStorage.getItem('token') || null;
+const userInfo = localStorage.getItem('userInfo') || null;
 
 //Register a user
 export const signupUser = createAsyncThunk(SIGNUP_USER, async (userInfo, thunkAPI) => {
@@ -16,7 +17,6 @@ export const signupUser = createAsyncThunk(SIGNUP_USER, async (userInfo, thunkAP
       'Content-Type': 'multipart/form-data',
     },
   };
-
   
   try {
     const response = await axios.post(API_URL, userInfo, requestOptions);
@@ -39,17 +39,17 @@ export const getAccessToken = createAsyncThunk(LOGIN_USER, async (userInfo, thun
     try {
  
       const response = await axios.post(LOGIN, userInfo, requestOptions);
-      console.log(response.data)
+    console.log(response.data)
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error, "Error creating request");
     }
   });
-  
+
 
 const initialState = {
   token,
-  isLoading: false,
+  isLoading: '',
   error: null,
   success: false,
 };
@@ -62,11 +62,13 @@ const registerSlice = createSlice({
     reduce
       .addCase(signupUser.fulfilled, (state, action) => {
         localStorage.setItem('token', action.payload.token);
+        localStorage.setItem('userInfo', JSON.stringify(action.payload.user));
         return {
           ...state,
           isLoading: false,
           success: true,
           token: action.payload.token,
+          userInfo: action.payload.user,
         };
       })
       .addCase(signupUser.pending, (state) => ({
@@ -85,23 +87,27 @@ const registerSlice = createSlice({
       .addCase(getAccessToken.pending, (state) => ({
         ...state,
         isLoading: true,
+        error: null,
       }));
     reduce.addCase(getAccessToken.fulfilled, (state, action) => {
       localStorage.setItem('token', action.payload.token);
-      console.log(action.payload.token)
+      localStorage.setItem('userInfo', JSON.stringify(action.payload.user));
       return {
         ...state,
         isLoading: false,
         success: true,
+        error: null,
         token: action.payload.token,
+        userInfo: action.payload.user,
       };
     });
-    reduce.addCase(getAccessToken.rejected, (state) => ({
+    reduce.addCase(getAccessToken.rejected, (state, action) => {
+      return{
       ...state,
       isLoading: false,
       success: false,
-      error: action.payload.error.message,
-    }));
+      error: action.payload.response.data.errors,
+    }});
   },
 });
 

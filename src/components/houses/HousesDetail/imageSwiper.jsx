@@ -64,7 +64,7 @@ export const ImageSwip = ()  => {
         spaceBetween={10}
         slidesPerView={5}
         freeMode={true}
-        watchSlidesVisibility={true}
+        watchslidesvisibility={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"

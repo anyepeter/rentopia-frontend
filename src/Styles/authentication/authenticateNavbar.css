@@ -26,6 +26,11 @@
     text-transform: capitalize;
 }
 
+.home-link{
+    text-decoration: none;
+    color: var(--black);
+    font-family: var(--muli);
+}
 
 .authenticate-navbar div p{
     font-family: var(--muli);
@@ -39,6 +44,7 @@
     display: flex;
     list-style: none;
     padding: none;
+    align-items: center;
 }
 
 .authentcation-section{
@@ -120,14 +126,14 @@
 display: flex;
 gap: 1rem;
 width: 100%;
-max-width: 400px;
+max-width: 300px;
 align-items: flex-start;
 }
 
 .authenticate-section{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.5rem;
     width: 40%;
 }
 
@@ -145,7 +151,7 @@ align-items: flex-start;
 .navbar-Sider hr{
     height: 2px;
     border: none;
-    width: 30px;
+    width: 27px;
     margin-top: 2px;
     background-color: var(--green);
 }
@@ -177,7 +183,7 @@ align-items: flex-start;
     border: none;
     border-radius: 5px;
     padding: 0 5px;
-    color: var(--black);
+    color: var(--text-siler);
 }
 
 .button-submit{
@@ -191,4 +197,10 @@ align-items: flex-start;
     line-height: 28px;
     font-weight: 400;
     color: #fff;
+}
+
+.button-submit:hover{
+    cursor: pointer;
+    background-color: #3ae69c;
+    transition: ease-in-out .4s;
 }

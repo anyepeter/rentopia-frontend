@@ -9,7 +9,7 @@ const AuthenticateSider = ({ test }) => {
             <div>
            <h1>{test.address}</h1>
            <ul className='authenticate-navbar-link'>
-            <li><Link to='/'>Home</Link></li>
+            <li><Link className='home-link' to='/'>Home</Link></li>
             <li><KeyboardArrowRightOutlinedIcon /></li>
             <li><p>{test?.address}</p></li>
            </ul>

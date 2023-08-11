@@ -7,7 +7,10 @@ const store = configureStore({
     reducer: {
       houses: houseSlice,
       register: registerSlice,
-    }
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+      serializableCheck: false,
+    }),
   });
 
   export default store;
