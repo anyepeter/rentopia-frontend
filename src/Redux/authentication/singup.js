@@ -69,17 +69,19 @@ const registerSlice = createSlice({
           success: true,
           token: action.payload.token,
           userInfo: action.payload.user,
+          error: null,
         };
       })
       .addCase(signupUser.pending, (state) => ({
         ...state,
         isLoading: true,
+        error: null,
       }))
       .addCase(signupUser.rejected, (state, action) => ({
         ...state,
         isLoading: false,
         success: false,
-        error: action.payload.error,
+        error: action.payload.response.data.errors,
       }));
 
       //login user 

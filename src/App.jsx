@@ -9,7 +9,7 @@ import { fetchHouses } from './Redux/houses/houseSlice'
 import AddousePage from './pages/addousePage'
 import SingUpPage from './pages/singUpPage'
 import LoginPage from './pages/logInPage'
-
+import 'react-toastify/dist/ReactToastify.css';
 
 const noNavbarPaths = ['/add_house', '/registers', '/login'];
 function App() {

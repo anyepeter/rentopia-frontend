@@ -5,7 +5,7 @@ import '../../Styles/authentication/AuthenticateNavbar.css'
 import { useDispatch, useSelector } from 'react-redux';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined'
 import { ToastContainer, toast } from 'react-toastify';
-import { Circle } from 'react-preloaders';
+import { Spin } from "react-cssfx-loading";
 import { getAccessToken } from '../../Redux/authentication/singup';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -60,34 +60,30 @@ const Login = () => {
       }
   
       setIsSubmitting(true);
+      setTimeout( async () => {
       try {
         await dispatch(getAccessToken(data));
         setIsSubmitting(false)
       } catch (error) {
-        setIsError(true);
-      } finally {
         setIsSubmitting(false);
       }
+    }, 1500)
  
     };
 
-   const tokenEl = localStorage.getItem('token') || null;
+   const tokenEl = localStorage.getItem('token');
 
-   useEffect(() => {
-    if (tokenEl !== null && error === null && isSubmitting) {
-      success();
-      setTimeout(() => {
-        window.location.reload(navigate('/'));
-      }, 1500);
-    }
-  }, [tokenEl, isSubmitting, navigate]);
-  
+useEffect(() =>{
+if(error === null && tokenEl && isSubmitting){
+  success();
+  setTimeout(() => {
+    window.location.reload(navigate('/'));
+  }, 1500);
+} else if(error !== null && isSubmitting){
+  notify();
+}
+}, [error, tokenEl, isSubmitting, navigate])
 
-useEffect(() => {
-  if(error !== null && isSubmitting){
-    notify();
-  }
-},[error, isSubmitting])
 
    const handleClick = (event) => {
  
@@ -134,38 +130,38 @@ useEffect(() => {
        <span id='emailError' style={{color: 'red', fontSize: 13, display: 'none'}}>Email needed!</span>
         </label>
         <ToastContainer 
-position="top-center"
-autoClose={1500}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-limit={1}
-rtl={false}
-pauseOnFocusLoss={false}
-draggable
-pauseOnHover={false}
-theme="light"
+          autoClose={1500}
+          position="top-center"
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          limit={1}
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover={false}
+          theme="light"
         />
         <label htmlFor='password'><p>Password</p>
         <input className='singup-input' placeholder='Password' {...register("password")} />
         <span id='passwordError' style={{color: 'red', fontSize: 13, display: 'none'}}>Password needed!</span>
         </label>
         <ToastContainer 
-position="top-center"
-autoClose={1000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-limit={1}
-rtl={false}
-pauseOnFocusLoss={false}
-draggable
-pauseOnHover={false}
-theme="light"
+          position="top-center"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          limit={1}
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover={false}
+          theme="light"
         />
 
       <p><button className='button-submit' disabled={isSubmitting} type='submit'>
-      {isSubmitting ? <Circle time={1800} /> : 'Login'}
+      {isSubmitting ? <Spin color='#FFFFFF' /> : 'Login'}
          </button></p>
     </form>
 

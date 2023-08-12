@@ -197,6 +197,9 @@ align-items: flex-start;
     line-height: 28px;
     font-weight: 400;
     color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .button-submit:hover{
