@@ -39,7 +39,6 @@ export const getAccessToken = createAsyncThunk(LOGIN_USER, async (userInfo, thun
     try {
  
       const response = await axios.post(LOGIN, userInfo, requestOptions);
-    console.log(response.data)
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error, "Error creating request");

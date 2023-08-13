@@ -15,7 +15,6 @@ const Login = () => {
   const navigate = useNavigate();
    const dispatch = useDispatch()
    const { error } = useSelector((state) => state.register);
-  console.log(error)
    const { register, handleSubmit } = useForm()
    const [isSubmitting, setIsSubmitting] = useState(false);
    

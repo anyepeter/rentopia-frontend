@@ -65,6 +65,7 @@ background-color: #F5F5F5;
 .titleSection p{
     font-family: var(--muli);
     color: var(--text-siler);
+    margin: 0;
 }
 
 .titleSection input{
@@ -155,9 +156,7 @@ background-color: #F5F5F5;
 .mapSection{
     margin-top: 1rem;
     width: 100%;
-    max-width: 500px;
     align-self: center;
-    overflow: hidden;
 }
 
 .nearbySection{
@@ -256,16 +255,31 @@ background-color: #F5F5F5;
     background-color: #F5F5F5;
     height: 70px;
     align-items: center;
+    border-radius: none;
 }
 
-.buttonSection input{
-    width: 30%;
+.button-submit-1{
+    width: 70%;
     height: 50px;
     background-color: var(--green);
     border: none;
     border-radius: 5px;
+    font-family: var(--muli);
+    font-size: 15px;
+    line-height: 28px;
+    font-weight: 400;
     color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.button-submit-1:hover{
+    cursor: pointer;
+    background-color: #3ae69c;
+    transition: ease-in-out .4s;
+}
+
 
 .photos-video{
     width: 100%;

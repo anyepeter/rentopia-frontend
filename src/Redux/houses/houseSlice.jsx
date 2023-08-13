@@ -28,7 +28,7 @@ export const addHouse = createAsyncThunk(POST_HOUSES, async (data, thunkAPI) => 
     const response = await axios.post('http://127.0.0.1:3000/houses', data, requestOptions);
     return response.data;
   } catch (error) {
-    console.error('Server Error:', error.response.data); // Log the detailed error response
+    console.error('Server Error:', error.response.data);
     return thunkAPI.rejectWithValue(error.response.data.error);
   }
   
@@ -42,6 +42,7 @@ const initialState = {
   isLoading: false,
   success: false,
   error: '',
+  house: null,
   response: null,
 };
 
@@ -82,11 +83,15 @@ const houseSlice = createSlice({
         ...state,
         isLoading: false,
         success: true,
+        house: action.payload,
         response: action.payload.data.data,
+        error: '',
       }))
       .addCase(addHouse.rejected, (state) => ({
         ...state,
-        isLoading: false
+        isLoading: false,
+        success: false,
+        error: 'error',
       }));
 
   }

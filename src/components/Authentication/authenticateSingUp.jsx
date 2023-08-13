@@ -15,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const SingUp = () => {
    const dispatch = useDispatch()
    const navigate = useNavigate();
-   const { handleSubmit, register } = useForm({ disableEnforceFocus: false });
+   const { handleSubmit, register } = useForm();
    const [isSubmitting, setIsSubmitting] = useState(false);
    const { error } = useSelector((state) => state.register);
 
@@ -82,11 +82,11 @@ const SingUp = () => {
          }, 1500);
          return;
        }
-        else if (!data.avatar) {
+        else if (!data.avatar[0]) {
           const avatarError = document.getElementById('avatarError');
           avatarError.style.display = 'block';
           setTimeout(() => {
-            passwordError.style.display = 'none';
+            avatarError.style.display = 'none';
           }, 1500);
           return;
         }
@@ -182,7 +182,7 @@ const SingUp = () => {
           pauseOnFocusLoss={false}
           draggable
           pauseOnHover={false}
-          theme="dark"
+          theme="light"
         />
         <label htmlFor='name'><p>Username</p>
         <input className='singup-input' {...register("name")} id='name' />
