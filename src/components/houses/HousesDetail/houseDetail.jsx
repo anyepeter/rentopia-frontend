@@ -9,12 +9,13 @@ import { useLocation, useParams } from 'react-router';
 import '../../../Styles/houseListing/HouseDetails/houseDetails.css'
 import LocationMap from './locationMap';
 import ImageSwip from './imageSwiper';
+import { useNavigate } from 'react-router-dom';
 
 const HouseDetail = () => {
    const location = useLocation()
    const { id } = useParams()
+   const navigate = useNavigate();
    const [selectedPlace, setSelectedPlace] = React.useState(1);
-   
    const { house, user } = location.state
    const houseData = [
     {
@@ -36,7 +37,10 @@ const HouseDetail = () => {
    const filteredFields = nearbyPlacesData.filter(
     (item) =>  item['place-id'] === selectedPlace
   );
+console.log(house.attributes)
+  const images = house?.attributes.images
 
+  const token = JSON.parse(localStorage.getItem('token')) || null;
 
     return <ThemeProvider theme={theme}>
 
@@ -69,7 +73,7 @@ const HouseDetail = () => {
                    </ul>
                 </IntroText>
                   <Picture>
-                  <ImageSwip />
+                  <ImageSwip  images={ images } />
                   </Picture>
             </ImageContainer>
 
@@ -77,28 +81,48 @@ const HouseDetail = () => {
           <section className='detail-container'>
           <ul className='house-features'>
             <li>
-                <span>2</span>
+                <span>{
+                
+                house?.attributes.bedroom? house?.attributes.bedroom : 0
+                
+                }</span>
                 <p>Bedrooms</p>
             </li>
 
             <li>
-                <span>3</span>
+                <span>{
+                    
+                    house?.attributes.bathroom? house?.attributes.bathroom : 0
+
+                    }</span>
                 <p>Bathrooms</p>
             </li>
 
             <li>
-                <span>1</span>
+                <span>{
+                    
+                    house?.attributes.kitchen? house?.attributes.kitchen : 0
+                    
+                    }</span>
                 <p>Kitchen</p>
             </li>
 
             <li>
-                <span>2</span>
+                <span>{
+                    
+                    house?.attributes.garage? 'present' : 'absent'
+
+                    }</span>
                 <p>Garage</p>
             </li>
         </ul>
         <div className='description-section'>
             <h1>Description</h1>
-            <p>Consectetuer aliquet. Libero porttitor curabitur vivamus accumsan placerat mattis, in lobortis auctor dolor mus, morbi. Dictumst dictumst. Faucibus. Est mollis. Turpis tortor. In vivamus venenatis neque hendrerit risus amet auctor cras, varius augue nullam morbi posuere lacus porttitor dictumst tincidunt curabitur ilisis torquent magnis cras maecenas vel. Odio proin, aptent tristique urna, nibh iaculis auctor Arcu faucibus sollicitudin donec inceptos dapibus viverra. Lorem consequat. Ac viverra torquent.</p>
+            <p>{
+                
+                house?.attributes.description? house?.attributes.description : 'No description available'
+
+                }</p>
         </div>
 
         <div className='property-features'>
@@ -107,34 +131,42 @@ const HouseDetail = () => {
             <div className='feature-listing-container'>
             <ul className='feature-listing'>
                 <li>
-                        <p>Property name:</p>
+                        <p className='listing-Property'>Property name:</p>
                         <p>{house.attributes.title}</p>
                 </li>
                 <li>
-                        <p>Property Type:</p>
+                        <p className='listing-Property'>Property Type:</p>
                         { house.relationships.category.data.name }
 
                 </li>
                 <li>
-                        <p>Property owner:</p>
+                        <p className='listing-Property'>Property owner:</p>
                         <p>{user.attributes.name}</p>
 
                 </li>
                 <li>
-                        <p>Water source </p>
-                        <p>Label</p>
+                        <p className='listing-Property'>Water source </p>
+                        <p>{
+                            
+                            house?.attributes['water-source']? house?.attributes['water-source'] : 'No water source'
+
+                            }</p>
 
                 </li>
                 <li>
-                        <p>Electricity Type</p>
-                        <p>Label</p>
+                        <p className='listing-Property'>Electricity Type</p>
+                        <p>{
+                            
+                            house?.attributes['metal-type']? house?.attributes['metal-type'] : 'No electricity type'
+                            
+                            }</p>
 
                 </li>
             </ul>
 
             <ul className='feature-listing-2'>
                 <li>
-                        <p>Inside a fance:</p>
+                        <p className='listing-Property'>Inside a fance:</p>
                         { 
 
                         house.relationships.security.data.gate ? <p>Yes</p> : <p>No</p>
@@ -143,7 +175,7 @@ const HouseDetail = () => {
                 </li>
                 <li>
                    
-                        <p>Security man:</p>
+                        <p className='listing-Property'>Security man:</p>
                         { 
 
                         house.relationships.security.data.securityMan? <p>Yes</p> : <p>No</p>
@@ -153,20 +185,24 @@ const HouseDetail = () => {
                 </li>
                 <li>
                    
-                        <p>City address:</p>
+                        <p className='listing-Property'>City address:</p>
                         <p>{house.relationships.location.data.city}</p>
                   
                 </li>
                 <li>
                    
-                   <p>Quater address:</p>
+                   <p className='listing-Property'>Quater address:</p>
                    <p>{house.relationships.location.data.quater}</p>
              
            </li>
            <li>
                    
-                   <p>City address:</p>
-                   <p>Yaounde</p>
+                   <p className='listing-Property'>Garage:</p>
+                   <p>{
+                    
+                    house?.attributes.garage? 'present' : 'absent'
+
+                    }</p>
              
            </li>
             </ul>
@@ -204,8 +240,12 @@ const HouseDetail = () => {
            
                 <ul >
                     {
-                        houseData.map((data) => (
-                            <li onClick={() => setSelectedPlace(data.id)} key={data.id}>{data.name}</li>
+                        houseData.map((data, index) => (
+                            <li
+                             onClick={() => setSelectedPlace(data.id)}
+                              key={data.id}
+                              className={`nav-link ${selectedPlace === index + 1 ? 'focused' : ''}`}
+                              >{data.name}</li>
                         ))
                     }
                 </ul>
@@ -243,8 +283,10 @@ const HouseDetail = () => {
           </section>
           <aside className='aside'>
             <div className='contact-info-container'>
-                <div className='contact-info'>
-                    <ul>
+              
+              {
+                token ? <div className='contact-info'>
+                     <ul>
                         <li><img src='https://www.befunky.com/images/prismic/82e0e255-17f9-41e0-85f1-210163b0ea34_hero-blur-image-3.jpg?auto=avif,webp&format=jpg&width=896'/></li>
                         <li><p className='user-name'>{user.attributes.name}</p>
                         <p>{user.attributes.email}</p></li>
@@ -254,7 +296,12 @@ const HouseDetail = () => {
                         <h1>Whatapp business contact</h1>
                         <p>{user.attributes['phone-number']}</p>
                     </div>
+                </div> : <div className='warning-container'>
+                    <p>Login or Register to have owner contact information</p>
+                    <button onClick={() => navigate('/login')}>Login/Register</button>
                 </div>
+
+              }
             </div>
 
 

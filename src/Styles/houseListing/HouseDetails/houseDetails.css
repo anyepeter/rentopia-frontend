@@ -166,7 +166,7 @@
 .feature-listing li, .feature-listing-2 li {
     padding: 10px;
     display: flex;
-    gap: 4rem;
+    gap: 5rem;
     height: 40px;
     justify-content: flex-start;
     text-align: right;
@@ -240,7 +240,7 @@ gap: .5rem;
     align-items: center;
 }
 
-.nearby-container ul li{
+.nav-link{
     height: inherit;
     display: flex;
     align-items: center;
@@ -252,7 +252,7 @@ gap: .5rem;
     border-radius: 5px;
 }
 
-.nearby-container ul li:active{
+.focused{
     color: #fff;
     background-color: var(--green);
 }
@@ -456,4 +456,42 @@ font-size: 15px;
     background-color: var(--green);
     font-family: var(--muli);
     font-size: 16px;
+}
+
+.warning-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-items: center;
+    padding: 1rem;
+}
+
+.warning-container p {
+    color: rgb(248, 80, 80);
+    font-family: var(--muli);
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.warning-container button {
+    padding: 10px;
+    border: none;
+    color: #fff;
+    background-color: var(--green);
+    font-family: var(--muli);
+    font-size: 16px;
+}
+
+.warning-container button:hover{
+    cursor: pointer;
+    background-color: #3ae69c;
+    transition: ease-in-out .4s;
+}
+
+.listing-Property{
+    width: 9rem;
+    text-align: start;
 }

@@ -15,7 +15,7 @@ import { EffectFade, Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modul
 
 import '../../../Styles/houseListing/HouseDetails/imageSwiper.css'
 
-export const ImageSwip = ()  => {
+export const ImageSwip = ({ images })  => {
   
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const thumbsSwiperRef = useRef(null);
@@ -24,7 +24,7 @@ export const ImageSwip = ()  => {
     setActiveSlideIndex(swiper.realIndex);
   };
 
-
+console.log(images);
 
   return (
     <>
@@ -46,18 +46,14 @@ export const ImageSwip = ()  => {
         className="mySwiper2"
         onSlideChange={handleSlideChange}
       >
-        <SwiperSlide>
-          <img className="autoplaying" src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img className="autoplaying" src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img className="autoplaying" src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img className="autoplaying" src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
+        {
+          images?.map((image, index) => {
+            return <SwiperSlide key={index}>
+              <img className="autoplaying" src={image} />
+            </SwiperSlide>
+          }
+          )
+        }
       </Swiper>
       <Swiper
         onSwiper={(swiper) => (thumbsSwiperRef.current = swiper)}
@@ -69,18 +65,14 @@ export const ImageSwip = ()  => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
+        {
+          images?.map((image, index) => {
+            return <SwiperSlide key={index}>
+              <img className="autoplaying" src={image} />
+            </SwiperSlide>
+          }
+          )
+        }
       </Swiper>
     </>
   );

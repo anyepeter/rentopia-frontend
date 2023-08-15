@@ -77,16 +77,13 @@ const AddHouse = () => {
           });
 
 
-  const [cityAddress, setCityAddress] = useState({
-    longitude: 3.808118661673009,
-     latitude: 11.519562005996704,
-     value: "Yaounde", id: 1})
+  const [cityAddress, setCityAddress] = useState({longitude: 11.502612977652129, latitude: 3.847739697100343, value: "Yaounde", id: "1"})
 
 const cityOption = [
-  {longitude: 2323, latitude: 2.45759, value: "Yaounde", id: "1"},
-  {longitude: 2323, latitude: 2.45759, value: "Douala", id: "2"},
+  {longitude: 11.502612977652129, latitude: 3.847739697100343, value: "Yaounde", id: "1"},
+  {longitude: 9.764493385781646, latitude: 4.04386508673251, value: "Douala", id: "2"},
   {longitude: 2323, latitude: 2.45759, value: "Buea", id: "3"},
-  {longitude: 2.808118661673009, latitude: 10.519562005996704, value: "Bamenda", id: "4"},
+  {longitude: 10.159473557054817, latitude: 5.962826442047373, value: "Bamenda", id: "4"},
   {longitude: 2323, latitude: 2.45759, value: "Limbe", id: "5"},
   {longitude: 2323, latitude: 2.45759, value: "Kumba", id: "6"},
   {longitude: 2323, latitude: 2.45759, value: "Kribi", id: "7"},
@@ -107,7 +104,7 @@ const address = {
 const handleMapClick = (lat, lng) => {
   setClickedLocation({ latitude: lat, longitude: lng });
 }
-
+console.log(clickedLocation)
   const onSubmit = (data) => {
     if (!data.title) {
       const titleError = document.getElementById('titleError');
@@ -273,7 +270,7 @@ const handleMapClick = (lat, lng) => {
         </p>
         <span id='categoryError' style={{color: 'red', fontSize: 13, display: 'none'}}> Proprty category is required!</span>
         <select {...register("category")}>
-        <option value="1">--Choose--</option>
+        <option>--Choose--</option>
         <option value="1">Studio</option>
         <option value="2">Single Room</option>
         <option value="3">Appartment</option>
@@ -403,14 +400,21 @@ const handleMapClick = (lat, lng) => {
         <p> 
           City
         </p>
-      <span id='cityError' style={{color: 'red', fontSize: 13, display: 'none'}}>Proprty city is required!</span>
-      <select {...register("city")} onChange={(e) => setCityAddress(e.target.value)}>
-         {
-            cityOption.map((city) => (
-              <option key={city.id} value={city}>{city.value}</option>
-            ))
-         }
-      </select>
+      <span id='cityError' style={{color: 'red', fontSize: 13, display: 'none'}}>Property city is required!</span>
+      <select
+  {...register("city")}
+  onChange={(e) => {
+    const selectedCityId = e.target.value;
+    const selectedCity = cityOption.find((city) => city.id === selectedCityId);
+    setCityAddress(selectedCity);
+  }}
+>
+  {cityOption.map((city) => (
+    <option key={city.id} value={city.id}>
+      {city.value}
+    </option>
+  ))}
+</select>
       </div>
      
       <div className='titleSection'>
@@ -418,7 +422,7 @@ const handleMapClick = (lat, lng) => {
           Quatar
         </p>
          <span id='quatarError' style={{color: 'red', fontSize: 13, display: 'none'}}>Property quatar required</span>
-      <input type="number" {...register('quatar')} />
+      <input {...register('quatar')} />
       </div>
     </div>
 
@@ -566,7 +570,12 @@ const handleMapClick = (lat, lng) => {
 
       <div className='titleSection'>
         <p>Place Category</p>
-        <input type='number' {...register(`near_by_places_attributes[${index}].place_id`)} />
+        <select {...register(`near_by_places_attributes[${index}].place_id`)} >
+        <option>--Choose--</option>
+        <option value="1">School</option>
+        <option value="2">Market</option>
+        <option value="3">Hospital</option>
+      </select>
       </div>
 
       <button className='remove' type="button" onClick={() => remove(index)}>

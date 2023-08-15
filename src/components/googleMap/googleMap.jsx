@@ -1,7 +1,7 @@
 
 
 
-import React from 'react'
+import React, { useState, useEffect, useCallback } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -19,33 +19,46 @@ function GooglesMap() {
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyAFMbjca_jtUOeaQoeBZIiDbXmdyrN0Di0"
   })
-
-  const [map, setMap] = React.useState(null)
-
-  const onLoad = React.useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-
-    setMap(map)
-  }, [])
-
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
-
-  return isLoaded ? (
+  
+    const [map, setMap] = useState(null);
+    const [zoom, setZoom] = useState(100);
+  
+    useEffect(() => {
+      const savedZoom = localStorage.getItem('mapZoom');
+      if (savedZoom) {
+        setZoom(Number(savedZoom));
+      }
+    }, []);
+  
+    const onLoad = useCallback(function callback(map) {
+      const bounds = new window.google.maps.LatLngBounds(center);
+      map.fitBounds(bounds);
+  
+      setMap(map);
+    }, []);
+  
+    const onUnmount = useCallback(function callback(map) {
+      setMap(null);
+    }, []);
+  
+    const handleZoomChange = newZoom => {
+      setZoom(newZoom);
+      localStorage.setItem('mapZoom', newZoom);
+    };
+  
+    return isLoaded ? (
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={10}
+        zoom={zoom}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
         { /* Child components, such as markers, info windows, etc. */ }
         <></>
       </GoogleMap>
-  ) : <></>
-}
-
-export default React.memo(GooglesMap)
+    ) : <></>;
+  }
+  
+  export default React.memo(GooglesMap);
+  
