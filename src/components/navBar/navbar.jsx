@@ -7,12 +7,14 @@ import { DropIcon,
     NavContainer, 
     NavLink, 
     PhoneIcon, 
-    SecondNav
+    SecondNav,
+    SubmitHouse
  } from "../../Styles/navbar/Navbar.styled";
 import { theme } from "../../Styles/Global.styled";
 import  logo  from "../../assets/logo.png";
 import { useState } from "react";
 import SelectOption from "./selectOption";
+
 
 
 const Navbar = () => {
@@ -21,17 +23,17 @@ const Navbar = () => {
         langueage: 'EN'
     })
 console.log(option.langueage)
-   const handleOptions = (e) =>{
+//    const handleOptions = (e) =>{
 
-    const { name, type, value, checked } = e.target 
-    setOption(prevOption => {
-        return {
-            prevOption,
-            [name]: type === "checkbox" ? checked : value
-        }
-    }) 
+//     const { name, type, value, checked } = e.target 
+//     setOption(prevOption => {
+//         return {
+//             prevOption,
+//             [name]: type === "checkbox" ? checked : value
+//         }
+//     }) 
 
-   }
+//    }
 
     return(
        <ThemeProvider theme={theme}>
@@ -99,7 +101,7 @@ console.log(option.langueage)
                     
                 </li>
                 <li>
-                    <button>Submit property</button>
+                   <button> <SubmitHouse to="add_house">Submit property</SubmitHouse></button>
                 </li>
               </LoginLink>
               </div>

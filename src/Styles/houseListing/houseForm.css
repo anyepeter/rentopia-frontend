@@ -1,0 +1,434 @@
+
+.fromSection{
+display: flex;
+width: 100%;
+justify-content: center;
+flex-direction: column;
+background-color: #F5F5F5;
+}
+
+.formCOntainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 3rem;
+    gap: 1.5rem;
+}
+
+.form-header{
+    color: var(--text-black);
+    font-size: 24px;
+    line-height: 35px;
+    font-weight: 900;
+    font-family: var(--carmata);
+}
+
+.formClass{
+    display: flex;
+    padding: 3rem;
+    background-color: #fff;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.formClass h2{
+    padding-bottom: .2rem;
+    font-family: var(--carmata);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+}
+
+.formClass hr{
+    width: 100%;
+    height: 1px;
+    border: none;
+    background-color: #DCDDDE;
+}
+
+.NumberType{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titleSection{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.titleSection p{
+    font-family: var(--muli);
+    color: var(--text-siler);
+}
+
+.titleSection input{
+    width: 100%;
+    height: 50px;
+    border: 1px solid var(--border-siler);
+    border-radius: 5px;
+    font-family: var(--muli);
+    font-size: 14px;
+    line-height: 28px;
+    padding-left: 10px;
+}
+
+.titleSection select{
+    width: 100%;
+    height: 50px;
+    border: 1px solid var(--border-siler);
+    border-radius: 5px;
+    font-family: var(--muli);
+    font-size: 14px;
+    line-height: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.carPark{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carPark input{
+    width: 50%;
+    height: 40px;
+    border: 1px solid #F5F5F5;
+    border-radius: 5px;
+}
+
+.textAreaField{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.textAreaField h2{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 30px;
+    font-family: var(--carmata);
+    color: var(--text-black);
+
+}
+
+.textAreaField p {
+    font-size: 15px;
+    font-family: var(--muli);
+    font-weight: 400;
+    line-height: 28px;
+    color: var(--text-siler);
+}
+
+.textAreaField textarea{
+    width: 100%;
+    height: 300px;
+    background-color: #F5F5F5;
+    border: none;
+    padding: 1rem;
+    font-family: var(--muli);
+}
+
+.locationSection{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.locationHead {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.mapSection{
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 500px;
+    align-self: center;
+    overflow: hidden;
+}
+
+.nearbySection{
+    display: flex;
+    justify-content: space-between; 
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.remove {
+    width: 25px;
+    height: 50px;
+    align-self: flex-end;
+    background-color: var(--text-black);
+    border: none;
+    color: #fff;
+}
+
+.nearbyPlace{
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add{
+    width: 3rem;
+    background-color: var(--green);
+    border: none;
+    height: 50px;
+    color: #fff;
+}
+
+.securtySection{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.security{
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: .5rem;
+}
+
+.security p{
+    width: 50%;
+    color: var(--text-siler);
+    font-family: var(--muli);
+}
+
+.security input{
+    justify-self: start;
+    width: 50%;
+    height: 40px;
+    align-self: flex-start;
+}
+
+
+
+.textAreaFieldSection{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+}
+
+.textAreaFieldSection p{
+    font-size: 15px;
+    font-family: var(--muli);
+    font-weight: 900;
+    line-height: 28px;
+    color: var(--text-black);
+}
+
+.textAreaFieldSection textarea{
+    width: 100%;
+    height: 200px;
+    background-color: var(--silver-background);
+    border: none;
+    padding: 1rem;
+    font-family: var(--muli);
+}
+
+.buttonSection{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2rem;
+    background-color: #F5F5F5;
+    height: 70px;
+    align-items: center;
+}
+
+.buttonSection input{
+    width: 30%;
+    height: 50px;
+    background-color: var(--green);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.photos-video{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+    }
+    .container {
+    margin-left: auto;
+    margin-right: auto;
+    }
+    .custom-file-input {
+    width: 100%;
+   
+    }
+    .custom-file-input::before {
+    content: "Drag and Drop to Add Photo (770 x 390)";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px;
+    background-color: #F9FCF5;
+    border: 2px solid var(--green);
+    border-radius: 3px;
+    border-style: dashed;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+    }
+    .custom-file-input:hover::before {
+    border-color: var(--green);
+    }
+    .custom-file-input:active::before {
+    background-color:  #F9FCF5;
+    }
+
+    .preview-container{
+        width: 100%;
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+    }
+
+    .preview-remove{
+        border: none;
+        border-radius: 20px;
+        background-color: var(--text-siler);
+        color: #fff;
+    }
+
+    .imageFile{
+        width: 100px;
+        height: 100px;
+    }
+
+    .image-preview{
+        display: flex;
+        gap: .2rem;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .flipswitch {
+        position: relative;
+        width: 91px;
+      }
+      .flipswitch input[type=checkbox] {
+        display: none;
+      }
+      .flipswitch-label {
+        display: block;
+        overflow: hidden;
+        cursor: pointer;
+        border: 0px solid #949993;
+        border-radius: 49px;
+      }
+      .flipswitch-inner {
+        width: 200%;
+        margin-left: -100%;
+        transition: margin 0.3s ease-in 0s;
+      }
+      .flipswitch-inner:before, .flipswitch-inner:after {
+        float: left;
+        width: 50%;
+        height: 37px;
+        padding: 0;
+        line-height: 37px;
+        font-size: 15px;
+        color: white;
+        font-family: Trebuchet, Arial, sans-serif;
+        font-weight: bold;
+        box-sizing: border-box;
+      }
+      .flipswitch-inner:before {
+        content: "No";
+        padding-left: 15px;
+        background-color: #EDEDED;
+        color: #74777B;
+      }
+      .flipswitch-inner:after {
+        content: "Yes";
+        padding-right: 12px;
+        background-color: #34C788;
+        color: #FFFFFF;
+        text-align: right;
+      }
+      .flipswitch-switch {
+        width: 31px;
+        margin: 3px;
+        background: #FFFFFF;
+        border: 0px solid #949993;
+        border-radius: 49px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 55px;
+        transition: all 0.3s ease-in 0s;
+      }
+      .flipswitch-cb:checked + .flipswitch-label .flipswitch-inner {
+        margin-left: 0;
+      }
+      .flipswitch-cb:checked + .flipswitch-label .flipswitch-switch {
+        right: 0;
+      }
+      
+      @media screen and (width <= 900px) {
+        .formCOntainer{
+            padding: 2rem 1rem;
+        }
+        
+        .formClass {
+            padding: 2rem;
+        }
+    }
+
+    @media screen and (width <= 678px) {
+
+        .nearbyPlace, .text-type{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media screen and (width <= 550px) {
+
+        .text-type{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .security {
+            justify-content: space-between;
+        }
+    }

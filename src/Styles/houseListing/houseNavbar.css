@@ -1,0 +1,54 @@
+.houseNavbarContainer{
+    width: 100%;
+    height: 55px;
+    display: flex;
+   align-items: center;
+    background-color: var(--black);
+}
+
+.houseNavbarSection{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 3rem;
+
+}
+
+.NavbarItems{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    color: #fff;
+    list-style: none;
+}
+
+.NavbarItems li {
+    display: flex;
+}
+
+.houseLogo{
+    width: 40px;
+}
+
+.userAvater{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.linkHouse{
+    display: flex;
+    gap: .3rem;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (width <= 900px) {
+
+    .houseNavbarSection{
+        padding: 0 1rem;
+    
+    }
+    
+}

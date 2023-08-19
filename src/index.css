@@ -1,3 +1,24 @@
+:root {
+  --green: #34C788;
+  --black: #0D1432;
+  --silver-background: #F5F5F5;
+
+  --button-silver: #EDEDED;
+
+  --horontal: #DCDDDE;
+
+  /* Text colors */
+  --text-siler: #74777B;
+  --text-black: #0D1432;
+
+  /* Border colors */
+  --border-siler: #ECECEC;
+
+  /*font family */
+  --carmata: 'Comfortaa', cursive;
+  --muli: 'Mulish', sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;

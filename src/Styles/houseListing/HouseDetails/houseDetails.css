@@ -1,0 +1,455 @@
+.propety-items{
+    list-style: none;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.5rem;
+ }
+
+ .property-type {
+    display: flex;
+    justify-content: flex-start;
+ }
+
+ .property-type p{
+    padding: 10px;
+    color: #fff;
+    background-color: var(--green);
+    width: auto;
+    border-radius: 5px;
+    font-family: var(--muli);
+    line-height: 28px;
+    font-size: 15px;
+    font-weight: 400;
+ }
+
+ .property-name{
+    font-family: var(--carmata);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 30px;
+    color: var(--black);
+
+ }
+
+ .property-address{
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    color: var(--text-siler);
+    line-height: 28px;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: var(--muli);
+ }
+
+ .propety-items-2{
+    list-style: none;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+ }
+
+ .propety-items-2 h4{
+    color: var(--text-siler);
+    line-height: 28px;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: var(--muli);
+ }
+
+ .propety-items-2 p{
+    color: var(--green);
+    line-height: 24px;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: var(--carmata);
+ }
+
+
+.house-features{
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    list-style: none;
+    background-color: var(--silver-background);
+    padding: 1rem;
+}
+
+.house-features li {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    font-size: 15px;
+    line-height: 28px;
+    font-weight: 400;
+    font-family: var(--muli);
+}
+
+.house-features li span{
+    color: var(--black);
+}
+
+.house-features li p{
+    color: var(--text-siler);
+}
+
+.main-container{
+    width: 100%;
+    display: flex;
+    max-width: 1300px;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+
+.detail-container{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 70%;
+}
+
+.description-section{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.description-section h1{
+    color: var(--black);
+    font-family: var(--carmata);
+    font-size: 24px;
+    font-family: 700;
+    line-height: 35px;
+}
+
+.description-section p{
+    color: var(--text-siler);
+    font-family: var(--muli);
+    font-size: 15px;
+    font-family: 400;
+    line-height: 28px;
+}
+
+.property-features h2, .proprety-security-section h2{
+    color: var(--black);
+    font-family: var(--carmata);
+    font-size: 18px;
+    font-family: 700;
+    line-height: 30px;
+}
+
+.feature-listing-container{
+    display: flex;
+    margin-top: 2rem;
+    color: var(--text-siler);
+    font-family: var(--muli);
+    font-size: 14px;
+    line-height: 28px;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.feature-listing{
+    list-style: none;
+    width: 50%;
+}
+
+.feature-listing-2{
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    width: 50%;
+}
+
+.feature-listing li, .feature-listing-2 li {
+    padding: 10px;
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    padding-right: 30%;
+    text-align: right;
+}
+
+.feature-listing li:nth-child(odd),
+.feature-listing-2 li:nth-child(odd){
+    background-color: var(--silver-background);
+}
+
+.proprety-security-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.security-item{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    background-color: var(--silver-background);
+    padding: 10px;
+}
+
+.security-item li{
+    display: flex;
+    gap: .5rem;
+    color: var(--text-siler);
+    font-family: var(--muli);
+    font-size: 15px;
+    line-height: 28px;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.security-item-p{
+    color: var(--black);
+}
+
+.security-description-1{
+display: flex;
+flex-direction: column;
+gap: .5rem;
+}
+
+/*Near by places*/
+
+.nearby-container{
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.nearby-container h1{
+    color: var(--black);
+    font-family: var(--carmata);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 35px;
+}
+
+.nearby-container ul{
+    display: flex;
+    list-style: none;
+    width: 100%;
+    background-color: var(--silver-background);
+    height: 55px;
+    align-items: center;
+}
+
+.nearby-container ul li{
+    height: inherit;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-size: 15px;
+    font-family: var(--muli);
+    font-weight: 400;
+    line-height: 28px;
+    border-radius: 5px;
+}
+
+.nearby-container ul li:active{
+    color: #fff;
+    background-color: var(--green);
+}
+
+/* style the table */
+
+table.blueTable {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    font-family: var(--muli);
+    font-size: 15px;
+    color: var(--black);
+    line-height: 28px;
+  }
+  table.blueTable td {
+    border-bottom: 1px solid #EDEDED;
+    padding: 8px 5px;
+  }
+  table.blueTable tbody td {
+    font-weight: 400;
+  }
+
+  table.blueTable thead {
+    font-weight: 900;
+    height: 20px;
+  }
+
+
+  .video-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  .video-container h1{
+    font-family: var(--carmata);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    color: var(--black);
+  }
+
+  .video-player{
+    width: 100%;
+  }
+/*Style the aside */
+
+.contact-info-container{
+    width: 100%;
+    background-color: #fff;
+    -webkit-box-shadow: -2px -2px 22px 11px rgba(237,237,237,1);
+    -moz-box-shadow: -2px -2px 22px 11px rgba(237,237,237,1);
+    box-shadow: -2px -2px 22px 11px rgba(237,237,237,1);
+}
+
+.aside{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-info{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 20px;
+}
+
+.contact-info ul{
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    list-style: none;
+    align-items: center;
+}
+
+.contact-info ul li{
+display: flex;
+justify-content: center;
+flex-direction: column;
+gap: .2rem;
+color: var(--text-siler);
+font-family: var(--muli);
+font-size: 15px;
+line-height: 24px;
+
+}
+.contact-info ul li img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.user-name{
+    font-size: 20px;
+    color: var(--green);
+    font-family: var(--carmata);
+    line-height: 28px;
+}
+
+.contact-number{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    line-height: 24px;
+    font-size: 16px;
+    color: var(--black);
+    font-weight: 700;
+    font-family: var(--carmata);
+}
+
+.contact-number p{
+    color: var(--text-siler);
+font-family: var(--muli);
+font-size: 15px;
+}
+
+.aside-location-container{
+ display: flex;
+ flex-direction: column;
+ gap: 1rem;
+}
+
+.aside-location-container h2{
+    line-height: 24px;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: var(--carmata);
+}
+
+.comment-container{
+    width: 100%;
+    display: flex;
+    max-width: 1300px;
+    gap: 1rem;
+    padding: 0 1rem;
+    flex-direction: column;
+    margin-top: 3rem;
+}
+
+.comment-container div{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-bottom: 1.5rem;
+}
+
+.comment-container h1{
+        line-height: 24px;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: var(--carmata);
+    color: var(--black);
+}
+
+.hr-1{
+    width: 100px;
+    margin-top: .5rem;
+    background-color: var(--green);
+    border: none;
+    height: 2px;
+}
+
+.hr-2{
+    width: 50px;
+    background-color: var(--green);
+    border: none;
+    height: 2px;
+}
+
+.comment-container form{
+    width: 100%;
+    max-width: 870px;
+    margin-bottom: 2rem;
+}
+
+.comment-textarea{
+    width: 100%;
+    padding: 10px;
+    height: 200px;
+    border: none;
+    background-color: var(--silver-background);
+    font-family: var(--muli);
+    font-size: 16px;
+    color: var(--text-siler);
+}
+
+.comment-button{
+    margin-top: 1rem;
+    padding: 10px;
+    border: none;
+    color: #fff;
+    background-color: var(--green);
+    font-family: var(--muli);
+    font-size: 16px;
+}
