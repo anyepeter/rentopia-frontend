@@ -12,28 +12,14 @@ import { DropIcon,
  } from "../../Styles/navbar/Navbar.styled";
 import { theme } from "../../Styles/Global.styled";
 import  logo  from "../../assets/logo.png";
-import { useState } from "react";
 import SelectOption from "./selectOption";
-
+import { Link } from "react-router-dom";
+import UserProfile from "./userProfile";
 
 
 const Navbar = () => {
 
-    const [option, setOption] = useState({
-        langueage: 'EN'
-    })
-console.log(option.langueage)
-//    const handleOptions = (e) =>{
-
-//     const { name, type, value, checked } = e.target 
-//     setOption(prevOption => {
-//         return {
-//             prevOption,
-//             [name]: type === "checkbox" ? checked : value
-//         }
-//     }) 
-
-//    }
+    const token = localStorage.getItem('token');
 
     return(
        <ThemeProvider theme={theme}>
@@ -92,13 +78,10 @@ console.log(option.langueage)
               </NavLink>
               
               <LoginLink>
-                <li>
-                    <a >Login</a>
-                </li>
-                <li>/</li>
-                <li>
-                    <a>Register</a>
-                    
+                <li> 
+                    {
+                        token ? <UserProfile /> : <Link to='/login' >Login / Register</Link>
+                    }
                 </li>
                 <li>
                    <button> <SubmitHouse to="add_house">Submit property</SubmitHouse></button>

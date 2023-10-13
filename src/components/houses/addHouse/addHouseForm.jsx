@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useForm, useFieldArray, Controller  } from 'react-hook-form';
 import { addHouse } from '../../../Redux/houses/houseSlice';
 import LocationN from '../formSearch'
+import { useSelector } from 'react-redux';
+import { Spin } from "react-cssfx-loading";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import '../../../Styles/houseListing/houseForm.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const AddHouse = () => {
@@ -15,44 +20,14 @@ const AddHouse = () => {
     name: 'near_by_places_attributes',
   });
   const dispatch = useDispatch();
- 
-
-  const handleAddPlace = () => {
-    if (fields.length === 0) {
-      append({ name: '', distance: '', place_id: '' });
-    }
-  };
 
   const [clickedLocation, setClickedLocation] = useState(null);
-
-
-  const handlePlaceChange = (value) => {
-    console.log(value)
-    SetselectsPlace(value)
-return value;
-  }
-
-  const onSubmit = (data) => {
-    dispatch(addHouse(data));
-  };
-
-  const address = {
-    latitude: 3.808118661673009, longitude: 11.519562005996704,
-  };
-
-  const handleMapClick = (lat, lng) => {
-    setClickedLocation({ latitude: lat, longitude: lng });
-  };
-
-  console.log(clickedLocation)
-
-
-
-
-//Handle image input files preview 
-
   const [selectedImages, setSelectedImages] = useState([]);
-console.log(selectedImages)
+  const { error, house } = useSelector((state) => state.houses);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
+
+//Handle image input files preview and remove
   const handleImageChange = (e) => {
     const files = e.target.files;
     const newImages = [];
@@ -78,6 +53,198 @@ console.log(selectedImages)
     setSelectedImages(updatedImages);
   };
 
+
+  const notify = () => toast.error("Email already exist!",{
+    position: "top-center",
+    autoClose: 1000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+      });
+
+      const success = () => toast.success("Register successfully!",{
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+          });
+
+
+  const [cityAddress, setCityAddress] = useState({longitude: 11.502612977652129, latitude: 3.847739697100343, value: "Yaounde", id: "1"})
+
+const cityOption = [
+  {longitude: 11.502612977652129, latitude: 3.847739697100343, value: "Yaounde", id: "1"},
+  {longitude: 9.764493385781646, latitude: 4.04386508673251, value: "Douala", id: "2"},
+  {longitude: 2323, latitude: 2.45759, value: "Buea", id: "3"},
+  {longitude: 10.159473557054817, latitude: 5.962826442047373, value: "Bamenda", id: "4"},
+  {longitude: 2323, latitude: 2.45759, value: "Limbe", id: "5"},
+  {longitude: 2323, latitude: 2.45759, value: "Kumba", id: "6"},
+  {longitude: 2323, latitude: 2.45759, value: "Kribi", id: "7"},
+  {longitude: 2323, latitude: 2.45759, value: "Bafoussam", id: "8"},
+  {longitude: 2323, latitude: 2.45759, value: "Bertoua", id: "9"},
+  {longitude: 2323, latitude: 2.45759, value: "Ebolowa", id: "10"},
+  {longitude: 2323, latitude: 2.45759, value: "Garoua", id: "11"},
+  {longitude: 2323, latitude: 2.45759, value: "Maroua", id: "12"},
+  {longitude: 2323, latitude: 2.45759, value: "Ngaoundere", id: "13"},
+  {longitude: 2323, latitude: 2.45759, value: "Nkongsamba", id: "14"},
+
+]
+console.log(cityAddress);
+//Handle map click/ location and address
+const address = {
+  latitude: cityAddress.latitude, longitude: cityAddress.longitude,
+};
+const handleMapClick = (lat, lng) => {
+  setClickedLocation({ latitude: lat, longitude: lng });
+}
+console.log(clickedLocation)
+  const onSubmit = (data) => {
+    if (!data.title) {
+      const titleError = document.getElementById('titleError');
+      titleError.style.display = 'block';
+      return;
+    } else if (!data.category) {
+      const categoryError = document.getElementById('categoryError');
+      categoryError.style.display = 'block';
+
+      return;
+    } else if (!data.price) {
+      const priceError = document.getElementById('priceError');
+      priceError.style.display = 'block';
+      return;
+    } else if (!data.houseDescription) {
+      const descriptionError = document.getElementById('descriptionError');
+      descriptionError.style.display = 'block';
+      return;
+    } else if (!clickedLocation) {
+      const locationError = document.getElementById('locationError');
+      locationError.style.display = 'block';
+      return;
+    } else if (!data.near_by_places_attributes[0]) {
+      const nearbyError = document.getElementById('nearbyError');
+      nearbyError.style.display = 'block';
+      return;
+    }
+    else if (data.images.length < 4) {
+      const imageError = document.getElementById('imageError');
+      imageError.style.display = 'block';
+      return;
+    }
+    else if (!data.video[0]) {
+      const videoError = document.getElementById('videoError');
+      videoError.style.display = 'block';
+      return;
+    }
+    else if (!data.bedroom) {
+      const bedroomError = document.getElementById('bedroomError');
+      bedroomError.style.display = 'block';
+      return;
+    }
+    else if (!data.bathroom) {
+      const bathroomError = document.getElementById('bathroomError');
+      bathroomError.style.display = 'block';
+      return;
+    }
+    else if (!data.kitchen) {
+      const kitchenError = document.getElementById('kitchenError');
+      kitchenError.style.display = 'block';
+      return;
+    }
+    else if (!data.waterSource) {
+      const waterError = document.getElementById('waterError');
+      waterError.style.display = 'block';
+      return;
+    }
+    else if (!data.metalType) {
+      const metalError = document.getElementById('metalError');
+      metalError.style.display = 'block';
+      return;
+    }
+    else if (!data.city) {
+      const cityError = document.getElementById('cityError');
+      cityError.style.display = 'block';
+      return;
+    }
+    else if (!data.quatar) {
+      const quatarError = document.getElementById('quatarError');
+      quatarError.style.display = 'block';
+      return;
+    }
+    
+
+
+    const  formData = new FormData();
+
+    // Append text data to formData
+    formData.append('title', data.title);
+    formData.append('category_id', data.category);
+    formData.append('number_of_houses', data.numberOfProperty);
+    formData.append('price', data.price);
+    formData.append('garage', data.garage);
+    formData.append('bedroom', data.bedroom);
+    formData.append('bathroom', data.bathroom);
+    formData.append('kitchen', data.kitchen);
+    formData.append('water_source', data.waterSource);
+    formData.append('metal_type', data.metalType);
+    formData.append('description', data.houseDescription);
+
+
+     // Append location data
+    formData.append('location_attributes[city]', cityAddress.value);
+    formData.append('location_attributes[quater]', data.quatar);
+    formData.append('location_attributes[latitude]', clickedLocation.latitude);
+    formData.append('location_attributes[longitude]', clickedLocation.longitude);
+
+     //Append security data
+     formData.append('security_attributes[gate]', data.gate);
+     formData.append('security_attributes[securityMan]', data.securityMan);
+
+
+    // Append images to formData
+    for (let i = 0; i < data.images.length; i++) {
+      formData.append('images[]', data.images[i]);
+    }
+    formData.append('video', data.video[0]);
+
+
+    // Append near by places to formData
+    data.near_by_places_attributes.forEach((place) => {
+      formData.append(`near_by_places_attributes[][name]`, place.name);
+      formData.append(`near_by_places_attributes[][distance]`, place.distance);
+      formData.append(`near_by_places_attributes[][place_id]`, place.place_id);
+    });
+     
+    setIsSubmitting(true);
+    setTimeout( async () => {
+    try {
+      await dispatch(addHouse(formData));
+      setIsSubmitting(false)
+    } catch (error) {
+      setIsSubmitting(false);
+    }
+  }, 1500)
+  };
+
+  useEffect(() => {
+    if (error) {
+      notify();
+    } else if (house && !error) {
+      success();
+      setTimeout(() => {
+      window.location.reload(navigate('/'));
+    }, 1500);
+    }
+  }, [error, house]);
+
+
+
   return (
     <section className='fromSection'>
 
@@ -90,6 +257,7 @@ console.log(selectedImages)
         <hr />
       <div className='titleSection'>
         <p>Property title</p>
+        <span id='titleError' style={{color: 'red', fontSize: 13, display: 'none'}}>Proprty title is required!</span>
       <input {...register('title')} />
       </div>
 
@@ -100,8 +268,9 @@ console.log(selectedImages)
         <p> 
           Property Type
         </p>
+        <span id='categoryError' style={{color: 'red', fontSize: 13, display: 'none'}}> Proprty category is required!</span>
         <select {...register("category")}>
-        <option value="1">--Choose--</option>
+        <option>--Choose--</option>
         <option value="1">Studio</option>
         <option value="2">Single Room</option>
         <option value="3">Appartment</option>
@@ -112,7 +281,8 @@ console.log(selectedImages)
         <p>
           Number of Property
         </p>
-      <input type="number" {...register('category_id')} />
+
+      <input type="number" {...register('numberOfProperty')} />
       </div>
 
       </div>
@@ -125,21 +295,24 @@ console.log(selectedImages)
        <p> 
         Price
         </p>
-       <input type="number" {...register('user_id')} />
+        <span id='priceError' style={{color: 'red', fontSize: 13, display: 'none'}}>Proprty price is required!</span>
+       <input type="number" {...register('price')} />
       </div>
 
       <div className='titleSection'>
   <p>
     Bedroom
   </p>
-<input type="number" {...register('category_id')} />
+  <span id='bedroomError' style={{color: 'red', fontSize: 13, display: 'none'}}>Proprty bedroom is required!</span>
+<input type="number" {...register('bedroom')} />
       </div>
 
       <div className='titleSection'>
        <p>
          Bathroom
        </p>
-       <input type="number" {...register('category_id')} />
+        <span id='bathroomError' style={{color: 'red', fontSize: 13, display: 'none'}}>Proprty bathroom is required!</span>
+       <input type="number" {...register('bathroom')}  />
       </div>
 
       </div>
@@ -148,31 +321,34 @@ console.log(selectedImages)
 
        <div className='titleSection'>
        <p> 
-        Ketchen
+        Kitchen
         </p>
-       <input type="number" {...register('user_id')} />
+        <span id='kitchenError' style={{color: 'red', fontSize: 13, display: 'none'}}>Proprty kitchen is required!</span>
+       <input type="number" {...register('kitchen')} />
       </div>
 
       <div className='titleSection'>
   <p>
     water source
   </p>
-  <select {...register("category")}>
-        <option value="1">--Choose--</option>
-        <option value="1">Studio</option>
-        <option value="2">Single Room</option>
-        <option value="3">Appartment</option>
+  <span id='waterError' style={{color: 'red', fontSize: 13, display: 'none'}}>Proprty water source is required!</span>
+  <select {...register("waterSource")} >
+        <option>--Choose--</option>
+        <option value="Cam_water">Cam-Water</option>
+        <option value="forage">forage</option>
+        <option value="well">well</option>
       </select>
       </div>
 
       <div className='titleSection'>
        <p>
-         Electricity type
+         Electricity metal type
        </p>
-       <select {...register("category")}>
-        <option value="1">--Choose--</option>
-        <option value="1">Studio</option>
-        <option value="2">Single Room</option>
+        <span id='metalError' style={{color: 'red', fontSize: 13, display: 'none'}}>Proprty metal type is required!</span>
+       <select {...register("metalType")} >
+        <option >--Choose--</option>
+        <option value="Enoe">Enoe</option>
+        <option value="pre-paid">pre-paid metal</option>
       </select>
       </div>
 
@@ -184,11 +360,11 @@ console.log(selectedImages)
          Present of a garage?
         </p>
         <div className="flipswitch">
-      <input type="checkbox" name="flipswitch" className="flipswitch-cb" {...register('catory_id')} id='fs' checked/>
+      <input type="checkbox" className="flipswitch-cb"  id='fsss' {...register('garage')}/>
        
-      <label class="flipswitch-label" htmlFor="fs">
-        <div class="flipswitch-inner"></div>
-        <div class="flipswitch-switch"></div>
+      <label className="flipswitch-label" htmlFor="fsss">
+        <div className="flipswitch-inner"></div>
+        <div className="flipswitch-switch"></div>
     </label>
 
        </div>
@@ -203,8 +379,8 @@ console.log(selectedImages)
        <p>
          Description
        </p>
-
-      <textarea type='textarea' {...register('location_attributes.city')} placeholder='Write details' />
+        <span id='descriptionError' style={{color: 'red', fontSize: 13, display: 'none'}}>Proprty description is required!</span>
+      <textarea type='textarea' {...register('houseDescription')} placeholder='Write details' />
 
      </div>
 
@@ -224,19 +400,36 @@ console.log(selectedImages)
         <p> 
           City
         </p>
-      <input type="number" {...register('user_id')} />
+      <span id='cityError' style={{color: 'red', fontSize: 13, display: 'none'}}>Property city is required!</span>
+      <select
+  {...register("city")}
+  onChange={(e) => {
+    const selectedCityId = e.target.value;
+    const selectedCity = cityOption.find((city) => city.id === selectedCityId);
+    setCityAddress(selectedCity);
+  }}
+>
+  {cityOption.map((city) => (
+    <option key={city.id} value={city.id}>
+      {city.value}
+    </option>
+  ))}
+</select>
       </div>
      
       <div className='titleSection'>
         <p>
-          Quater
+          Quatar
         </p>
-      <input type="number" {...register('category_id')} />
+         <span id='quatarError' style={{color: 'red', fontSize: 13, display: 'none'}}>Property quatar required</span>
+      <input {...register('quatar')} />
       </div>
     </div>
 
     <div className='mapSection'>
-      <LocationN  address={address} onMapClick={handleMapClick} />
+      <p>Please shot your property on the map below.</p>
+      <LocationN address={address} onMapClick={handleMapClick} />
+      <span id='locationError' style={{color: 'red', fontSize: 13, display: 'none'}}> Location needed!</span>
     </div>
     </section>
 
@@ -255,11 +448,11 @@ console.log(selectedImages)
          The present of a Gate in the property
         </p>
         <div className="flipswitch">
-      <input type="checkbox" name="flipswitch" className="flipswitch-cb" {...register('category_id')} id='fs' />
+      <input type="checkbox" className="flipswitch-cb"  id='fss' {...register('gate')} />
        
-      <label class="flipswitch-label" htmlFor="fs">
-        <div class="flipswitch-inner"></div>
-        <div class="flipswitch-switch"></div>
+      <label className="flipswitch-label" htmlFor="fss">
+        <div className="flipswitch-inner"></div>
+        <div className="flipswitch-switch"></div>
     </label>
 
        </div>
@@ -271,120 +464,136 @@ console.log(selectedImages)
          Security man
         </p>
         <div className="flipswitch">
-      <input type="checkbox" name="flipswitch" className="flipswitch-cb" {...register('category_id')} id='fs' />
+      <input type="checkbox" className="flipswitch-cb" {...register('securityMan')} id='fs' />
        
-      <label class="flipswitch-label" htmlFor="fs">
-        <div class="flipswitch-inner"></div>
-        <div class="flipswitch-switch"></div>
+      <label className="flipswitch-label" htmlFor="fs">
+        <div className="flipswitch-inner"></div>
+        <div className="flipswitch-switch"></div>
     </label>
 
        </div>
 
       </div>
-   
-      <div className='textAreaFieldSection'>
-
-       <p>
-        Security Description
-       </p>
-
-      <textarea type='textarea' {...register('location_attributes.city')} placeholder='Write details' />
-
-     </div>
     </section>
 
  {//  property Images and video
  }
 
-    <section className='photos-video' >
-      <h2>Add Photos and Videos</h2>
-      <hr />
-
-      <div>
-      <div className="container">
-        <input
-          className="custom-file-input"
-          type="file"
-          onChange={handleImageChange}
-          multiple
-          
-        />
-      </div>
-
-      <div className="preview-container">
-        {selectedImages?.map((image, index) => (
-          <div key={index} className="image-preview">
-            <img src={image} className='imageFile' alt={`Preview ${index + 1}`} />
-            <button className='preview-remove' onClick={() => handleRemoveImage(index)}>
-            <CloseOutlinedIcon style={{ fontSize: '15' }}/>
-            </button>
-          </div>
-        ))}
-      </div>
+<section className='photos-video' >
+  <h2>Add Photos and Videos</h2>
+  <hr />
+<p>Add more than 4 images of the property</p>
+  <Controller
+  name="images" 
+  control={control}
+  render={({ field }) => (
+    <div className="container">
+      <input
+        className="custom-file-input"
+        type="file"
+        onChange={(e) => {
+          field.onChange(e.target.files); // Update the images field value with the FileList object
+          handleImageChange(e); 
+        }}
+        multiple
+        
+      />
+      <span id='imageError' style={{color: 'red', fontSize: 13, display: 'none'}}>Images needed!</span>
     </div>
+  )}
+/>
+
+<ToastContainer 
+          autoClose={1500}
+          position="top-center"
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          limit={1}
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover={false}
+          theme="light"
+        />
+
+  <div className="preview-container">
+    {selectedImages?.map((image, index) => (
+      <div key={index} className="image-preview">
+        <img src={image} className='imageFile' alt={`Preview ${index + 1}`} />
+        <button className='preview-remove' onClick={() => handleRemoveImage(index)}>
+          <CloseOutlinedIcon style={{ fontSize: '15' }}/>
+        </button>
+      </div>
+    ))}
+  </div>
 
      <div>
-      <p>Vidoe</p>
-      <input type='file' {...register('images[]')} multiple />
+      <p>Video</p>
+      <p>Include a video of the propety</p>
+      <input type='file' {...register('video')} multiple />
+      <span id='videoError' style={{color: 'red', fontSize: 13, display: 'none'}}>Video needed!</span>
      </div>
 
     </section>
 
-
+    <ToastContainer 
+          position="top-center"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          limit={1}
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover={false}
+          theme="light"
+        />
 
 <div className='nearbySection' >
  <h2>Add Nearby Places</h2>
-
+ 
  <hr />
-      {fields.length === 0 && (
-<div className='nearbyPlace' key={0}>
-          <div className='titleSection place-name'>
-            <p>Place Name</p>
-          <input {...register(`near_by_places_attributes[0].name`)} />
-          </div>
+ <span id='nearbyError' style={{color: 'red', fontSize: 13, display: 'none'}}>Nearby places needed!</span>
+ {fields.map((item, index) => (
+    <div className='nearbyPlace' key={item.id}>
+      <div className='titleSection place-name'>
+        <p>Place Name</p>
+        <input {...register(`near_by_places_attributes[${index}].name`)} placeholder='e.g School name' />
+      </div>
 
-          <div className='titleSection place-name'>
-            <p>Distances</p>
-          <input type='number' {...register(`near_by_places_attributes[0].distance`)} />
-          </div>
+      <div className='titleSection place-name'>
+        <p>Distances</p>
+        <input type='number' {...register(`near_by_places_attributes[${index}].distance`)} placeholder='e.g 100m to the school'/>
+      </div>
 
-          <div className='titleSection'>
-            <p>Place Category</p>
-         <input {...register(`near_by_places_attributes[0].place_id`)} />
-         </div>
-        </div>
-      )}
+      <div className='titleSection'>
+        <p>Place Category</p>
+        <select {...register(`near_by_places_attributes[${index}].place_id`)} >
+        <option>--Choose--</option>
+        <option value="1">School</option>
+        <option value="2">Market</option>
+        <option value="3">Hospital</option>
+      </select>
+      </div>
 
-{fields.slice(1).map((item, index) => (
-        <div className='nearbyPlace' key={item.id}>
-            <div className='titleSection place-name'>
-            <p>Place Name</p>
-          <input {...register(`near_by_places_attributes[${index + 1}].name`)} />
-          </div>
-
-          <div className='titleSection place-name'>
-            <p>Distances</p>
-          <input type='number' {...register(`near_by_places_attributes[${index + 1}].distance`)} />
-          </div>
-
-          <div className='titleSection'>
-            <p>Place Category</p>
-         <input {...register(`near_by_places_attributes[${index + 1}].place_id`)} />
-         </div>
-         <button className='remove' type="button" onClick={() => remove(index)}>
-            <CloseOutlinedIcon />
-          </button>
-        </div>
-      ))}
-
+      <button className='remove' type="button" onClick={() => remove(index)}>
+        <CloseOutlinedIcon />
+      </button>
+    </div>
+  ))}
       <button className='add' type="button" onClick={() => append({})}>
         <AddOutlinedIcon />
       </button>
 
      </div>
-
-     <div className='buttonSection'>
-      <input type='Submit' />
+      <div className='buttonSection'>
+     <button className='button-submit-1' disabled={isSubmitting}>
+      {
+       isSubmitting ? <Spin color="#FFFFFF"  /> : 'Submit Property'
+      }
+     </button>
      </div>
     </form>
     </div>

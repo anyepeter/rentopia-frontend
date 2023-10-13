@@ -29,7 +29,7 @@ img:hover{
 }
 h3{
     position: absolute;
-    top: 4%;
+    top: -5%;
     right: 3%;
     background-color: black;
     color: #fff;
